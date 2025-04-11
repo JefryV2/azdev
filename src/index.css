@@ -1,0 +1,417 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark GitHub theme colors with improved consistency */
+    --background: 220 13% 7%; /* github dark */
+    --foreground: 210 40% 98%;
+
+    --card: 222 14% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 14% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Make primary color consistent with GitHub green */
+    --primary: 142 62% 47%; /* github green */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 14% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 10% 23%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 142 62% 47%; /* github green */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 23%; /* github border */
+    --input: 220 13% 23%;
+    --ring: 142 62% 47%; /* github green */
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 210 9% 5%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 23%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground relative;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted/80;
+  }
+  
+  /* Apply fade-in animation to all major sections */
+  section {
+    @apply opacity-0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  /* Stagger the fade-in of sections */
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+  section:nth-of-type(4) { animation-delay: 0.4s; }
+  section:nth-of-type(5) { animation-delay: 0.5s; }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-secondary/40 backdrop-blur-lg border border-border shadow-sm;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-github-accent to-github-accent/80 bg-clip-text text-transparent;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-2 tracking-tight;
+  }
+  
+  .section-subtitle {
+    @apply text-xl text-muted-foreground mb-8 max-w-2xl;
+  }
+  
+  .reveal-animation {
+    @apply opacity-0;
+  }
+  
+  .reveal-animation.active {
+    @apply animate-fade-in;
+  }
+  
+  .staggered-item {
+    @apply opacity-0;
+  }
+  
+  .staggered-item.active {
+    @apply animate-fade-in;
+  }
+
+  .fancy-blob {
+    @apply absolute rounded-full filter blur-3xl opacity-10;
+  }
+
+  .moving-gradient {
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+  }
+
+  .image-card {
+    @apply relative overflow-hidden rounded-t-xl shadow-lg transition-all border-t border-l border-r border-github-border bg-github-darker;
+  }
+  
+  .image-card img {
+    @apply transition-all duration-500 w-full h-full object-cover;
+  }
+  
+  .image-card:hover img {
+    @apply scale-110;
+  }
+  
+  .image-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6;
+  }
+  
+  .image-card:hover .image-card-overlay {
+    @apply opacity-100;
+  }
+
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .particle {
+    @apply absolute rounded-full bg-github-accent/20;
+    animation: particleFloat 20s infinite linear;
+  }
+  
+  .github-card {
+    @apply rounded-lg border border-github-border bg-github-darker p-6 transition-all hover:border-github-accent/30;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    @apply absolute w-0 h-0.5 bg-primary bottom-0 left-0 transition-all duration-300;
+  }
+  
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+  
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-glow::before {
+    content: '';
+    @apply absolute -inset-10 bg-primary/20 rotate-45 blur-md opacity-0 transition-opacity duration-500;
+  }
+  
+  .btn-glow:hover::before {
+    @apply opacity-100;
+  }
+  
+  .fade-bg {
+    @apply relative overflow-hidden;
+  }
+  
+  .fade-bg::before {
+    content: '';
+    @apply absolute -inset-10 bg-primary/5 blur-3xl opacity-20;
+  }
+  
+  .fade-border {
+    @apply border border-primary/20 transition-colors duration-300 hover:border-primary/40;
+  }
+  
+  .fade-grid {
+    @apply relative;
+  }
+  
+  .fade-grid::before {
+    content: '';
+    @apply absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card Hover Effects */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Animated Underline for Links */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  @apply bg-github-accent;
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* Slider Animation */
+@keyframes slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.tech-slider {
+  animation: slider 30s linear infinite;
+}
+
+.tech-slider:hover {
+  animation-play-state: paused;
+}
+
+/* New Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-200px) translateX(100px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(360deg);
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-fade-in > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+
+.fade-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.fade-section::before,
+.fade-section::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(46, 160, 67, 0.05);
+  filter: blur(3rem);
+  z-index: -1;
+}
+
+.fade-section::before {
+  width: 20rem;
+  height: 20rem;
+  top: -5rem;
+  right: -5rem;
+}
+
+.fade-section::after {
+  width: 25rem;
+  height: 25rem;
+  bottom: -10rem;
+  left: -10rem;
+  opacity: 0.6;
+}
