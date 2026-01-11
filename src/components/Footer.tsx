@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRightIcon, PiggyBank } from 'lucide-react';
-import { toast } from "@/components/ui/use-toast";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ArrowRightIcon, PiggyBank, Github } from 'lucide-react';
+import { toast } from '@/components/ui/use-toast';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -62,7 +62,7 @@ const Footer = () => {
                 Contact
               </a>
             </nav>
-          </div>
+
           
           <div>
             <h3 className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 mb-4">Project Investment</h3>

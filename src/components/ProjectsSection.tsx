@@ -33,9 +33,10 @@ interface ProjectCardProps {
   imageSrc: string;
   delay?: string;
   detailedDescription?: string;
+  demoUrl?: string;
 }
 
-const ProjectCard = ({ 
+const ProjectCard: React.FC<ProjectCardProps> = ({ 
   icon, 
   category, 
   title, 
@@ -43,8 +44,9 @@ const ProjectCard = ({
   tech, 
   imageSrc, 
   delay = 'delay-0',
-  detailedDescription
-}: ProjectCardProps) => {
+  detailedDescription,
+  demoUrl
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,12 +55,12 @@ const ProjectCard = ({
       "transition-all duration-300", 
       delay
     )}>
-      <div className="image-card flex-shrink-0">
+      <div className="image-card flex-shrink-0 relative">
         <AspectRatio ratio={16/9} className="w-full">
           <img 
             src={imageSrc} 
             alt={title} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-300"
           />
         </AspectRatio>
         <div className="image-card-overlay">
@@ -79,6 +81,17 @@ const ProjectCard = ({
               </span>
             )}
           </div>
+          {demoUrl && (
+            <a 
+              href={demoUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-github-darker rounded-lg font-medium hover:bg-gray-100 transition-colors"
+            >
+              Live Demo
+              <ArrowRightIcon className="h-4 w-4" />
+            </a>
+          )}
         </div>
       </div>
 
@@ -145,13 +158,24 @@ const ProjectCard = ({
 
 const projects = [
   {
+    icon: <Globe className="h-6 w-6" />,
+    category: "Mobile Application",
+    title: "Ruvopp",
+    description: "A personalized news filtering application built with React Native and Expo that delivers curated articles tailored to user interests.",
+    detailedDescription: "Ruvopp is a personalized news filtering application built with React Native and Expo that delivers curated articles tailored to user interests. Key features include personalized news feed with algorithm-driven content curation, article interaction system with like, save, and dismiss functionality, real-time updates that refresh content every 30 seconds, modern card-based interface with vertical action buttons, cross-platform responsive design, dark/light theme support, echo control system for intelligent article grouping, social community integration, screen time management with parental controls, location services integration, and full Supabase backend integration.",
+    tech: ["React Native", "Expo", "TypeScript", "Supabase", "REST APIs", "React Hooks", "Lucide Icons", "Nativewind", "EAS Build"],
+    imageSrc: "/assets/ruvo.png",
+    demoUrl: "https://ruvo-news-app.vercel.app/",
+  },
+  {
     icon: <Shield className="h-6 w-6" />,
+    demoUrl: "https://debate-guardian.vercel.app/",
     category: "AI & Speech Recognition",
     title: "Debate Guardian",
     description: "A real-time fact-checking platform to promote honesty and accountability in debates using AI and speech recognition.",
     detailedDescription: "Debate Guardian captures spoken claims through speech recognition, automatically verifies them against a database of facts, and provides immediate feedback. It detects logical fallacies, assigns credibility scores, and offers visual analytics on debate patterns. The platform features adjustable tolerance settings, emotion analysis, and comprehensive speaker statistics, all powered by the Gemini API.",
     tech: ["React", "TypeScript", "Google Cloud Speech-to-Text", "Gemini API", "Node.js", "Chart.js", "TensorFlow.js"],
-    imageSrc: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2940&auto=format&fit=crop",
+    imageSrc: "/assets/debateguadrdian.png",
   },
   {
     icon: <Layers className="h-6 w-6" />,
@@ -161,6 +185,7 @@ const projects = [
     detailedDescription: "This platform integrates data from multiple sources to provide comprehensive business intelligence. It uses machine learning algorithms to analyze trends, identify anomalies, and generate predictive insights that help businesses optimize their operations and financial performance.",
     tech: ["React", "Node.js", "TypeScript", "Tailwind CSS", "Supabase", "OpenAI"],
     imageSrc: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=2940&auto=format&fit=crop",
+    demoUrl: "https://your-ai-business-analyzer-demo-url.com",
   },
   {
     icon: <Database className="h-6 w-6" />,
@@ -169,7 +194,8 @@ const projects = [
     description: "A platform that analyzes the credibility of influencer and brand partnerships through sentiment analysis and AI scoring.",
     detailedDescription: "This tool helps brands and consumers evaluate the authenticity and ethical standards of social media content and partnerships. By analyzing language patterns, disclosure practices, and audience engagement, it provides transparency scores that promote accountability in digital marketing.",
     tech: ["React", "Node.js", "TypeScript", "Supabase", "OpenAI", "Tailwind CSS"],
-    imageSrc: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=2940&auto=format&fit=crop",
+    imageSrc: "/assets/ethicallSearch.png",
+    demoUrl: "https://ethical-searcher.vercel.app/",
   },
   {
     icon: <LineChart className="h-6 w-6" />,
@@ -178,7 +204,8 @@ const projects = [
     description: "A trading assistant that tracks market movements and provides AI-driven entry/exit recommendations.",
     detailedDescription: "This application monitors real-time market data and uses machine learning models to identify potential trading opportunities. It analyzes historical patterns, volatility factors, and technical indicators to generate timely recommendations while managing risk through adaptive position sizing algorithms.",
     tech: ["Streamlit", "Python", "Pandas", "ML", "Yahoo Finance API", "SQLite"],
-    imageSrc: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2940&auto=format&fit=crop"
+    imageSrc: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2940&auto=format&fit=crop",
+    demoUrl: "https://your-market-analysis-demo-url.com"
   },
   {
     icon: <PieChart className="h-6 w-6" />,
@@ -188,6 +215,7 @@ const projects = [
     detailedDescription: "This tool streamlines the data preparation workflow by automating common cleaning tasks like handling missing values, removing duplicates, and standardizing formats. It incorporates interactive visualizations that help users quickly identify patterns, outliers, and data quality issues.",
     tech: ["Streamlit", "Python", "Pandas", "Plotly", "Seaborn", "SQLite"],
     imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop",
+    demoUrl: "https://your-data-cleaning-tool-demo-url.com",
   },
   {
     icon: <FileText className="h-6 w-6" />,
@@ -196,7 +224,8 @@ const projects = [
     description: "An automated system that scrapes job postings and matches them to resumes using AI technology.",
     detailedDescription: "This application helps job seekers efficiently find and apply for relevant positions by automating the search process. It uses natural language processing to analyze job descriptions and match them with the user's skills and experience, prioritizing opportunities with the highest potential fit.",
     tech: ["Streamlit", "Python", "BeautifulSoup", "OpenAI GPT", "SQLite"],
-    imageSrc: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2940&auto=format&fit=crop"
+    imageSrc: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2940&auto=format&fit=crop",
+    demoUrl: "https://your-job-application-tool-demo-url.com"
   },
   {
     icon: <Globe className="h-6 w-6" />,
@@ -206,6 +235,7 @@ const projects = [
     detailedDescription: "This dashboard provides comprehensive stock market analytics through multiple visualization tools and predictive models. It integrates fundamental data, technical indicators, and sentiment analysis to offer a holistic view of investment opportunities and market trends.",
     tech: ["Streamlit", "Python", "Yahoo Finance API", "Power BI", "Pandas"],
     imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2940&auto=format&fit=crop",
+    demoUrl: "https://your-stock-analysis-dashboard-demo-url.com"
   }
 ];
 
