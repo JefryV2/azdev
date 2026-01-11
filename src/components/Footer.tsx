@@ -62,7 +62,7 @@ const Footer = () => {
                 Contact
               </a>
             </nav>
-
+          </div>
           
           <div>
             <h3 className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 mb-4">Project Investment</h3>

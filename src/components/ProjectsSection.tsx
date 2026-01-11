@@ -185,7 +185,6 @@ const projects = [
     detailedDescription: "This platform integrates data from multiple sources to provide comprehensive business intelligence. It uses machine learning algorithms to analyze trends, identify anomalies, and generate predictive insights that help businesses optimize their operations and financial performance.",
     tech: ["React", "Node.js", "TypeScript", "Tailwind CSS", "Supabase", "OpenAI"],
     imageSrc: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=2940&auto=format&fit=crop",
-    demoUrl: "https://your-ai-business-analyzer-demo-url.com",
   },
   {
     icon: <Database className="h-6 w-6" />,
@@ -205,7 +204,6 @@ const projects = [
     detailedDescription: "This application monitors real-time market data and uses machine learning models to identify potential trading opportunities. It analyzes historical patterns, volatility factors, and technical indicators to generate timely recommendations while managing risk through adaptive position sizing algorithms.",
     tech: ["Streamlit", "Python", "Pandas", "ML", "Yahoo Finance API", "SQLite"],
     imageSrc: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2940&auto=format&fit=crop",
-    demoUrl: "https://your-market-analysis-demo-url.com"
   },
   {
     icon: <PieChart className="h-6 w-6" />,
@@ -215,7 +213,6 @@ const projects = [
     detailedDescription: "This tool streamlines the data preparation workflow by automating common cleaning tasks like handling missing values, removing duplicates, and standardizing formats. It incorporates interactive visualizations that help users quickly identify patterns, outliers, and data quality issues.",
     tech: ["Streamlit", "Python", "Pandas", "Plotly", "Seaborn", "SQLite"],
     imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop",
-    demoUrl: "https://your-data-cleaning-tool-demo-url.com",
   },
   {
     icon: <FileText className="h-6 w-6" />,
@@ -225,7 +222,6 @@ const projects = [
     detailedDescription: "This application helps job seekers efficiently find and apply for relevant positions by automating the search process. It uses natural language processing to analyze job descriptions and match them with the user's skills and experience, prioritizing opportunities with the highest potential fit.",
     tech: ["Streamlit", "Python", "BeautifulSoup", "OpenAI GPT", "SQLite"],
     imageSrc: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2940&auto=format&fit=crop",
-    demoUrl: "https://your-job-application-tool-demo-url.com"
   },
   {
     icon: <Globe className="h-6 w-6" />,
@@ -235,7 +231,6 @@ const projects = [
     detailedDescription: "This dashboard provides comprehensive stock market analytics through multiple visualization tools and predictive models. It integrates fundamental data, technical indicators, and sentiment analysis to offer a holistic view of investment opportunities and market trends.",
     tech: ["Streamlit", "Python", "Yahoo Finance API", "Power BI", "Pandas"],
     imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2940&auto=format&fit=crop",
-    demoUrl: "https://your-stock-analysis-dashboard-demo-url.com"
   }
 ];
 
