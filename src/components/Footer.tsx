@@ -121,13 +121,23 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-10 pt-6 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground mb-4 md:mb-0">
+        <div className="mt-10 pt-6 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
             © {currentYear} Portfolio. All rights reserved.
           </p>
-          
-          <div className="text-xs text-muted-foreground/60">
-            <span className="inline-block px-2 py-1 border border-primary/10 rounded-md bg-black/50 hover:bg-primary/5 transition-colors">
+
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/JefryV2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Github className="h-4 w-4" />
+              <span>@JefryV2</span>
+            </a>
+
+            <span className="text-xs text-muted-foreground/60 inline-block px-2 py-1 border border-primary/10 rounded-md bg-black/50 hover:bg-primary/5 transition-colors">
               v1.0.0
             </span>
           </div>

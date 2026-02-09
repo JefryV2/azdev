@@ -27,22 +27,35 @@ const Resume = () => {
         <div className="bg-card rounded-lg border shadow-sm p-6 md:p-8 max-w-4xl mx-auto">
           <header className="mb-8 text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Aziz Dhouib</h1>
-            <h2 className="text-xl text-muted-foreground mb-4">Data Scientist | Business Intelligence Specialist</h2>
+            <h2 className="text-xl text-muted-foreground mb-4">
+              Data Scientist &amp; Full‑Stack Developer
+            </h2>
             
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="flex items-center gap-1">📍 Tunisia</span>
               <span className="flex items-center gap-1">📧 azizdhouib2002@gmail.com</span>
               <span className="flex items-center gap-1">📞 +21624725227</span>
+              <span className="flex items-center gap-1">
+                🔗 GitHub:&nbsp;
+                <a 
+                  href="https://github.com/JefryV2" 
+                  className="underline hover:text-primary" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  github.com/JefryV2
+                </a>
+              </span>
             </div>
           </header>
           
           <section className="mb-8">
             <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Summary</h3>
             <p className="text-muted-foreground">
-              Data Analyst with expertise in business intelligence (BI), data modeling, and customer analytics. 
-              Strong background in SQL, Python, Looker, and Amplitude, with experience in ETL pipelines, dashboard development, 
-              and KPI reporting. Adept at working cross-functionally with engineers, product teams, and stakeholders to deliver 
-              actionable insights that improve customer engagement and user experience.
+              Data Scientist &amp; Full‑Stack Developer with expertise in AI‑driven applications, business intelligence, 
+              and end‑to‑end product development. I build modern web and mobile experiences using React, TypeScript, 
+              Supabase, and Python, and I design analytics systems that turn complex data into clear, actionable insights. 
+              Comfortable owning the full lifecycle from data modeling and ETL to API design, UI/UX, and deployment.
             </p>
           </section>
           
@@ -111,33 +124,69 @@ const Resume = () => {
             
             <div className="space-y-4">
               <div>
-                <h4 className="font-medium">1️⃣ Debate Guardian (AI & Speech Recognition Tool)</h4>
-                <p className="text-sm">A real-time fact-checking platform to promote honesty and accountability in debates using AI and speech recognition technology.</p>
-                <p className="text-sm text-muted-foreground"><span className="font-medium">Tech Stack:</span> React, TypeScript, Google Cloud Speech-to-Text, Gemini API, Node.js, Chart.js, TensorFlow.js</p>
+                <h4 className="font-medium">1️⃣ Trinity Life Optimizer – Personal Analytics App</h4>
+                <p className="text-sm">
+                  Mobile‑first life dashboard that unifies health, wealth, and relationships into interactive cards and analytics,
+                  including stress modeling, correlations, and time‑series insights.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Vite, Tailwind CSS, Supabase, Recharts, shadcn/ui, Capacitor.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">2️⃣ Ruvopp – Personalized News & Insights App</h4>
+                <p className="text-sm">
+                  Cross‑platform mobile app that curates a personalized news feed with real‑time updates, engagement tracking,
+                  and Supabase‑backed content preferences.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> React Native, Expo, TypeScript, Supabase, REST APIs.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">3️⃣ Debate Guardian – AI &amp; Speech Recognition Tool</h4>
+                <p className="text-sm">
+                  Real‑time fact‑checking platform that listens to debates, detects claims, and evaluates them with AI, providing
+                  credibility scores, fallacy detection, and visual analytics.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Google Cloud Speech‑to‑Text, Gemini API, Node.js, Chart.js, TensorFlow.js.
+                </p>
               </div>
               
               <div>
-                <h4 className="font-medium">2️⃣ AI Business Analyzer (BI & Data Analytics Tool)</h4>
-                <p className="text-sm">Built a business intelligence platform that analyzes customer trends, financial performance, and risk factors.</p>
-                <p className="text-sm text-muted-foreground"><span className="font-medium">Tech Stack:</span> SQL, Looker, Python, PostgreSQL, Supabase, Power BI, Amplitude.</p>
+                <h4 className="font-medium">4️⃣ Ethical Checker for Social Media Influencers &amp; Brands</h4>
+                <p className="text-sm">
+                  Platform that scores influencer/brand collaborations based on transparency, sentiment, and engagement to help
+                  brands make ethical partnership decisions.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Supabase, OpenAI API, Tailwind CSS.
+                </p>
               </div>
               
               <div>
-                <h4 className="font-medium">3️⃣ Data Cleaning & Visualization Tool (ETL & Reporting)</h4>
-                <p className="text-sm">Developed an automated ETL pipeline and real-time anomaly detection dashboard for high-accuracy reporting.</p>
-                <p className="text-sm text-muted-foreground"><span className="font-medium">Tech Stack:</span> Python, SQL, Pandas, Seaborn, Power BI.</p>
+                <h4 className="font-medium">5️⃣ Job Application Automation Tool</h4>
+                <p className="text-sm">
+                  Automation system that scrapes job postings, analyzes them with NLP, and matches them to candidate resumes to
+                  prioritize the best‑fit opportunities.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> Streamlit, Python, BeautifulSoup, OpenAI GPT, SQLite.
+                </p>
               </div>
-              
+
               <div>
-                <h4 className="font-medium">4️⃣ Ethical Checker for Social Media Influencers & Brands (Customer & Market Analysis)</h4>
-                <p className="text-sm">Created a BI tool to assess influencer credibility, analyzing engagement data and brand partnerships using AI models.</p>
-                <p className="text-sm text-muted-foreground"><span className="font-medium">Tech Stack:</span> SQL, Python, React, Supabase, Looker.</p>
-              </div>
-              
-              <div>
-                <h4 className="font-medium">5️⃣ Market Analysis & Trading Assistant (Financial Analytics & User Insights)</h4>
-                <p className="text-sm">Designed an interactive trading dashboard tracking customer trading behaviors, stock trends, and AI-driven predictions.</p>
-                <p className="text-sm text-muted-foreground"><span className="font-medium">Tech Stack:</span> SQL, Python, Yahoo Finance API, Power BI, Tableau.</p>
+                <h4 className="font-medium">6️⃣ Market Analysis &amp; Trading Assistant</h4>
+                <p className="text-sm">
+                  Interactive trading dashboard that tracks stock movements, user trading behavior, and AI‑driven entry/exit
+                  recommendations with risk‑aware analytics.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> Streamlit, Python, Pandas, Machine Learning, Yahoo Finance API, Power BI, Tableau.
+                </p>
               </div>
             </div>
           </section>
@@ -145,12 +194,22 @@ const Resume = () => {
           <section className="mb-8">
             <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Technical Skills</h3>
             
-            <div className="space-y-2">
-              <p className="text-sm">✅ <span className="font-medium">Business Intelligence & Data Visualization:</span> Looker, Power BI, Tableau, Amplitude</p>
-              <p className="text-sm">✅ <span className="font-medium">Programming & Data Pipelines:</span> SQL, Python, Pandas, NumPy, ETL, Supabase, PostgreSQL</p>
-              <p className="text-sm">✅ <span className="font-medium">Customer & Product Analytics:</span> Clickstream Analysis, KPI Development, A/B Testing</p>
-              <p className="text-sm">✅ <span className="font-medium">Cloud & Data Engineering:</span> AWS, GCP, Airflow, Dataflow, Event Tracking</p>
-              <p className="text-sm">✅ <span className="font-medium">Data Governance & Reporting:</span> Data Modeling, Data Dictionaries, Anomaly Detection</p>
+            <div className="space-y-2 text-sm">
+              <p>
+                ✅ <span className="font-medium">Frontend:</span> React, React Native, TypeScript, Vite, Tailwind CSS, shadcn/ui, Streamlit, Responsive Design, UI/UX.
+              </p>
+              <p>
+                ✅ <span className="font-medium">Backend &amp; Databases:</span> Node.js, Express, Supabase, PostgreSQL, SQLite, RESTful APIs, GraphQL, Firebase.
+              </p>
+              <p>
+                ✅ <span className="font-medium">AI &amp; Data Science:</span> Python, Pandas, NumPy, Scikit‑learn, TensorFlow, NLP, OpenAI API, Gemini API, Machine Learning, Data Analysis.
+              </p>
+              <p>
+                ✅ <span className="font-medium">Data Visualization &amp; BI:</span> Power BI, Tableau, Plotly, Seaborn, Chart.js, Recharts, Data Dashboards, Real‑time Analytics.
+              </p>
+              <p>
+                ✅ <span className="font-medium">Cloud, DevOps &amp; Tooling:</span> Supabase, AWS, Azure, Docker, Git, GitHub Actions, CI/CD, ETL Pipelines, Automation.
+              </p>
             </div>
           </section>
           

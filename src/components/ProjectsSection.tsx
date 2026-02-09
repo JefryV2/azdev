@@ -34,6 +34,7 @@ interface ProjectCardProps {
   delay?: string;
   detailedDescription?: string;
   demoUrl?: string;
+  githubUrl?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
@@ -45,7 +46,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   imageSrc, 
   delay = 'delay-0',
   detailedDescription,
-  demoUrl
+  demoUrl,
+  githubUrl
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -81,17 +83,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               </span>
             )}
           </div>
-          {demoUrl && (
-            <a 
-              href={demoUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-github-darker rounded-lg font-medium hover:bg-gray-100 transition-colors"
-            >
-              Live Demo
-              <ArrowRightIcon className="h-4 w-4" />
-            </a>
-          )}
+          <div className="flex flex-wrap gap-3">
+            {demoUrl && (
+              <a 
+                href={demoUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white text-github-darker rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              >
+                Live Demo
+                <ArrowRightIcon className="h-4 w-4" />
+              </a>
+            )}
+            {githubUrl && (
+              <a 
+                href={githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 border border-white/40 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                View Code
+                <ArrowRightIcon className="h-4 w-4" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
@@ -166,6 +181,17 @@ const projects = [
     tech: ["React Native", "Expo", "TypeScript", "Supabase", "REST APIs", "React Hooks", "Lucide Icons", "Nativewind", "EAS Build"],
     imageSrc: "/assets/ruvo.png",
     demoUrl: "https://ruvo-news-app.vercel.app/",
+  },
+  {
+    icon: <LineChart className="h-6 w-6" />,
+    category: "Full-Stack Mobile Analytics App",
+    title: "Trinity Life Optimizer",
+    description: "A mobile-first personal analytics app that unifies Health, Wealth, and Relationships into a single interactive life dashboard.",
+    detailedDescription: "Trinity Life Optimizer is a mobile-first personal analytics platform that combines health, wealth, and relationship data into a cohesive life operating system. It features rich visualizations for sleep, steps, mood, and stress, a Supabase-backed data model for all three life pillars, and an Insights Lab that showcases time-series analytics, correlations, and mini experiments. Built with React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Recharts, and Supabase, it is designed both as a real-life companion app and as a portfolio-ready data storytelling project, with mobile wrapping via Capacitor.",
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Recharts", "shadcn/ui", "Capacitor"],
+    // Local preview image (add this file under public/assets)
+    imageSrc: "/assets/trinity-dashboard.png",
+    demoUrl: "https://trinity-life-optimizer.vercel.app/",
   },
   {
     icon: <Shield className="h-6 w-6" />,
