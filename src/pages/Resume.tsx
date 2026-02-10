@@ -188,6 +188,18 @@ const Resume = () => {
                   <span className="font-medium">Tech Stack:</span> Streamlit, Python, Pandas, Machine Learning, Yahoo Finance API, Power BI, Tableau.
                 </p>
               </div>
+
+              <div>
+                <h4 className="font-medium">7️⃣ RewardMax – Credit Card Rewards Optimizer</h4>
+                <p className="text-sm">
+                  Web application that helps users maximize credit card rewards by tracking spending across cards, modeling category
+                  bonuses, and recommending the best card to use at checkout. Includes interactive previews of recommendations,
+                  quarterly bonus alerts, and challenge‑based gamification to nudge better habits.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> Modern React &amp; TypeScript single‑page application, Tailwind‑style UI, deployed on Netlify.
+                </p>
+              </div>
             </div>
           </section>
           

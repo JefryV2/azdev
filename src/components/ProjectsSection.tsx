@@ -11,7 +11,8 @@ import {
   PieChart,
   Shield,
   ChevronUpIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  CreditCard
 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
@@ -192,6 +193,17 @@ const projects = [
     // Local preview image (add this file under public/assets)
     imageSrc: "/assets/trinity-dashboard.png",
     demoUrl: "https://trinity-life-optimizer.vercel.app/",
+  },
+  {
+    icon: <CreditCard className="h-6 w-6" />,
+    category: "Fintech & Rewards Optimization",
+    title: "RewardMax",
+    description: "A credit card rewards optimization app that analyzes spending categories, bonus structures, and user preferences to recommend the best card for each purchase.",
+    detailedDescription: "RewardMax is a web application that optimizes credit card rewards by analyzing spending patterns, category bonuses, and quarterly promotions to recommend the best card at checkout. Users can add cards manually, set reward priorities, and see interactive previews of recommendations without needing to link bank accounts. The app includes features like location-based nudges, challenge-based gamification, and clear analytics that show how much extra value is being unlocked over time.",
+    tech: ["React", "TypeScript", "Tailwind-style UI", "Responsive Design", "Netlify Deployment"],
+    // Add a screenshot of the RewardMax dashboard as public/assets/rewardmax.png
+    imageSrc: "/assets/rewardmax.png",
+    demoUrl: "https://rewardmax.netlify.app/welcome/",
   },
   {
     icon: <Shield className="h-6 w-6" />,
