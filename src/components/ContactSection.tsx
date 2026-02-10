@@ -132,7 +132,7 @@ const ContactSection = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-xl p-8 md:p-10 shadow-lg staggered-item">
+          <div className="glass-card rounded-2xl p-8 md:p-10 shadow-2xl shadow-black/30 staggered-item bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30 backdrop-blur-xl border border-github-border/50 hover:border-github-accent/30 transition-all duration-500">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,13 +141,13 @@ const ContactSection = () => {
                     name="name"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-sm font-medium block">
+                        <FormLabel className="text-sm font-semibold block text-white">
                           Name
                         </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Your name"
-                            className="w-full bg-secondary/80 border-border"
+                            className="w-full bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
                             {...field}
                           />
                         </FormControl>
@@ -160,14 +160,14 @@ const ContactSection = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-sm font-medium block">
+                        <FormLabel className="text-sm font-semibold block text-white">
                           Email
                         </FormLabel>
                         <FormControl>
                           <Input
                             type="email"
                             placeholder="Your email"
-                            className="w-full bg-secondary/80 border-border"
+                            className="w-full bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
                             {...field}
                           />
                         </FormControl>
@@ -182,13 +182,13 @@ const ContactSection = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem className="space-y-2">
-                      <FormLabel className="text-sm font-medium block">
+                      <FormLabel className="text-sm font-semibold block text-white">
                         Message
                       </FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Your message"
-                          className="w-full min-h-[150px] bg-secondary/80 border-border"
+                          className="w-full min-h-[150px] bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -200,7 +200,7 @@ const ContactSection = () => {
                 <Button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full md:w-auto flex items-center justify-center gap-2 shadow-lg shadow-primary/10"
+                  className="w-full md:w-auto flex items-center justify-center gap-2 shadow-xl shadow-github-accent/20 bg-gradient-to-r from-github-accent to-github-accent/80 hover:from-github-accent/90 hover:to-github-accent text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-github-accent/30"
                 >
                   {loading ? (
                     <>Sending...</>
@@ -213,13 +213,13 @@ const ContactSection = () => {
               </form>
             </Form>
             
-            <div className="mt-10 pt-8 border-t border-border">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
+            <div className="mt-10 pt-8 border-t border-github-border/50">
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-br from-github-accent/10 to-github-accent/5 border border-github-accent/20">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-github-accent/20 to-github-accent/10 border border-github-accent/30 text-github-accent shadow-lg">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-medium mb-1">Email</h3>
+                  <h3 className="text-base font-semibold mb-1 text-white">Email</h3>
                   <p className="text-muted-foreground text-sm">azizdhouib2002@gmail.com</p>
                 </div>
               </div>

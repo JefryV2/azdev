@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="container px-6 mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="relative overflow-hidden">
-            <h3 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 mb-4">Portfolio</h3>
+            <h3 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 mb-4">Aziz Dhouib</h3>
             <p className="text-muted-foreground text-sm max-w-xs">
               Specializing in full-stack AI-driven applications that combine elegant interfaces with powerful data science.
             </p>
@@ -123,7 +123,7 @@ const Footer = () => {
         
         <div className="mt-10 pt-6 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Portfolio. All rights reserved.
+            © {currentYear} Aziz Dhouib. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">

@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         <a href="#hero" className="font-bold text-2xl text-gradient">
-          Portfolio
+          Aziz Dhouib
         </a>
 
         {/* Desktop Navigation */}

@@ -91,7 +91,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-secondary/40 backdrop-blur-lg border border-border shadow-sm;
+    @apply bg-secondary/40 backdrop-blur-xl border border-border/50 shadow-xl shadow-black/20;
   }
   
   .text-gradient {
@@ -224,11 +224,11 @@ html {
 
 /* Card Hover Effects */
 .project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 }
 
 /* Animated Underline for Links */
@@ -414,4 +414,63 @@ html {
   bottom: -10rem;
   left: -10rem;
   opacity: 0.6;
+}
+
+/* Print Styles for Resume */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5in;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  header,
+  footer,
+  .back-button-container,
+  nav {
+    display: none !important;
+  }
+
+  .resume-content {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .resume-content * {
+    color: black !important;
+    background: white !important;
+  }
+
+  .resume-content h1,
+  .resume-content h2,
+  .resume-content h3,
+  .resume-content h4 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+
+  .resume-content section {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .resume-content a {
+    color: #0066cc !important;
+    text-decoration: underline;
+  }
+
+  .resume-content a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
 }

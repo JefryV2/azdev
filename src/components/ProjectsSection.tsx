@@ -54,32 +54,37 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <div className={cn(
-      "staggered-item project-card overflow-hidden rounded-xl h-full flex flex-col",
-      "transition-all duration-300", 
+      "staggered-item project-card overflow-hidden rounded-2xl h-full flex flex-col",
+      "transition-all duration-500 group",
+      "bg-gradient-to-br from-github-darker via-github-darker to-github-dark",
+      "border border-github-border/50 shadow-xl shadow-black/20",
+      "hover:border-github-accent/30 hover:shadow-2xl hover:shadow-github-accent/10",
+      "hover:-translate-y-2",
       delay
     )}>
-      <div className="image-card flex-shrink-0 relative">
+      <div className="image-card flex-shrink-0 relative overflow-hidden">
         <AspectRatio ratio={16/9} className="w-full">
           <img 
             src={imageSrc} 
             alt={title} 
-            className="w-full h-full object-cover transition-transform duration-300"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </AspectRatio>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="image-card-overlay">
-          <div className="text-sm font-medium mb-1 text-blue-300">{category}</div>
-          <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
+          <div className="text-xs font-semibold mb-2 px-3 py-1 bg-gradient-to-r from-blue-400/20 to-purple-400/20 backdrop-blur-sm border border-blue-300/30 rounded-full text-blue-300 inline-block">{category}</div>
+          <h3 className="text-2xl font-bold mb-3 text-white drop-shadow-lg">{title}</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {tech.slice(0, 3).map((item, index) => (
               <span 
                 key={index} 
-                className="text-xs font-medium bg-white/10 text-white/90 px-3 py-1 rounded-full"
+                className="text-xs font-medium bg-white/15 backdrop-blur-sm border border-white/20 text-white/95 px-3 py-1.5 rounded-full shadow-lg"
               >
                 {item}
               </span>
             ))}
             {tech.length > 3 && (
-              <span className="text-xs font-medium bg-white/10 text-white/90 px-3 py-1 rounded-full">
+              <span className="text-xs font-medium bg-white/15 backdrop-blur-sm border border-white/20 text-white/95 px-3 py-1.5 rounded-full shadow-lg">
                 +{tech.length - 3} more
               </span>
             )}
@@ -90,7 +95,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={demoUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white text-github-darker rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-white to-gray-100 text-github-darker rounded-lg font-semibold hover:from-gray-100 hover:to-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Live Demo
                 <ArrowRightIcon className="h-4 w-4" />
@@ -101,7 +106,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={githubUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 border border-white/40 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 View Code
                 <ArrowRightIcon className="h-4 w-4" />
@@ -114,16 +119,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <Collapsible
         open={isOpen}
         onOpenChange={setIsOpen}
-        className="bg-github-darker border border-github-border transition-all duration-300 overflow-hidden flex-grow flex flex-col"
+        className="bg-gradient-to-br from-github-darker/95 to-github-dark/95 backdrop-blur-sm border-t border-github-border/50 transition-all duration-500 overflow-hidden flex-grow flex flex-col shadow-inner"
       >
         <div className="p-6 flex-grow">
           <div className="flex items-start justify-between mb-4">
-            <div className="p-3 inline-block rounded-lg bg-github-accent/10 text-github-accent">
+            <div className="p-3.5 inline-block rounded-xl bg-gradient-to-br from-github-accent/20 to-github-accent/10 border border-github-accent/30 text-github-accent shadow-lg">
               {icon}
             </div>
             <CollapsibleTrigger asChild>
               <button
-                className="inline-flex items-center text-sm font-medium text-github-accent hover:text-github-accent/80 transition-colors"
+                className="inline-flex items-center text-sm font-semibold text-github-accent hover:text-white bg-github-accent/10 hover:bg-github-accent/20 px-4 py-2 rounded-lg transition-all duration-300 border border-github-accent/20 hover:border-github-accent/40"
               >
                 {isOpen ? (
                   <>
@@ -138,27 +143,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </CollapsibleTrigger>
           </div>
           <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
-          <p className="text-muted-foreground mb-0">{description}</p>
+          <p className="text-muted-foreground mb-0 leading-relaxed">{description}</p>
         </div>
         
         <CollapsibleContent>
           <div className="px-6 pb-6 space-y-6 pt-2">
-            <div className="h-px w-full bg-github-border/50"></div>
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-github-border/50 to-transparent"></div>
             
             {detailedDescription && (
               <div>
-                <h4 className="text-lg font-semibold mb-2 text-white">Project Details</h4>
-                <p className="text-muted-foreground">{detailedDescription}</p>
+                <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                  <span className="w-1 h-5 bg-gradient-to-b from-github-accent to-github-accent/50 rounded-full"></span>
+                  Project Details
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">{detailedDescription}</p>
               </div>
             )}
             
             <div>
-              <h4 className="text-lg font-semibold mb-2 text-white">Technologies</h4>
+              <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                <span className="w-1 h-5 bg-gradient-to-b from-github-accent to-github-accent/50 rounded-full"></span>
+                Technologies
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {tech.map((item, index) => (
                   <span 
                     key={index} 
-                    className="text-xs font-medium bg-github-accent/10 text-github-accent px-3 py-1 rounded-full"
+                    className="text-xs font-medium bg-gradient-to-r from-github-accent/15 to-github-accent/10 text-github-accent px-4 py-1.5 rounded-full border border-github-accent/30 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                   >
                     {item}
                   </span>

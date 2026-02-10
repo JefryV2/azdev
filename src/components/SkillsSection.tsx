@@ -11,16 +11,23 @@ interface SkillCategoryProps {
 const SkillCategory = ({ title, skills, delay = 'delay-0' }: SkillCategoryProps) => {
   return (
     <div className={cn(
-      "staggered-item glass-card rounded-xl p-6 h-full",
-      "hover:shadow-lg transition-all duration-300",
+      "staggered-item glass-card rounded-2xl p-6 h-full",
+      "bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30",
+      "backdrop-blur-xl border border-github-border/50",
+      "shadow-xl shadow-black/20",
+      "hover:shadow-2xl hover:shadow-github-accent/10 hover:border-github-accent/30",
+      "hover:-translate-y-1 transition-all duration-500",
       delay
     )}>
-      <h3 className="text-lg font-bold mb-4">{title}</h3>
-      <div className="flex flex-wrap gap-2">
+      <h3 className="text-lg font-bold mb-5 text-white flex items-center gap-2">
+        <span className="w-1.5 h-6 bg-gradient-to-b from-github-accent to-github-accent/50 rounded-full"></span>
+        {title}
+      </h3>
+      <div className="flex flex-wrap gap-2.5">
         {skills.map((skill, index) => (
           <span 
             key={index} 
-            className="text-sm bg-secondary rounded-full px-3 py-1 mb-2"
+            className="text-sm bg-gradient-to-r from-github-accent/15 to-github-accent/10 text-github-accent/90 rounded-full px-4 py-2 mb-2 border border-github-accent/25 shadow-md hover:shadow-lg hover:scale-105 hover:border-github-accent/40 transition-all duration-300 font-medium"
           >
             {skill}
           </span>
@@ -145,15 +152,15 @@ const SkillsSection = () => {
         </div>
         
         {/* Tech Slider with Logos - Fixed to prevent text overflow */}
-        <div className="staggered-item overflow-hidden mt-16 rounded-lg glass-card p-6">
+        <div className="staggered-item overflow-hidden mt-16 rounded-2xl glass-card p-6 bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30 backdrop-blur-xl border border-github-border/50 shadow-xl shadow-black/20">
           <div className="tech-slider flex space-x-8 whitespace-nowrap">
             {[...techSlider, ...techSlider].map((tech, index) => (
               <div 
                 key={index}
-                className="text-sm md:text-base font-medium px-3 py-1 bg-secondary/50 rounded-full inline-flex items-center space-x-2 min-w-fit"
+                className="text-sm md:text-base font-medium px-4 py-2 bg-gradient-to-r from-github-accent/15 to-github-accent/10 border border-github-accent/25 rounded-full inline-flex items-center space-x-2 min-w-fit shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 <img src={tech.logo} alt={tech.name} className="w-5 h-5 flex-shrink-0" />
-                <span className="truncate max-w-[120px]">{tech.name}</span>
+                <span className="truncate max-w-[120px] text-github-accent/90">{tech.name}</span>
               </div>
             ))}
           </div>

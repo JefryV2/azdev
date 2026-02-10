@@ -7,24 +7,45 @@ import { ArrowLeftIcon, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Resume = () => {
+  const handleDownloadPDF = () => {
+    // Hide navbar and footer for printing
+    const navbar = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const backButton = document.querySelector('.back-button-container');
+    
+    if (navbar) navbar.style.display = 'none';
+    if (footer) footer.style.display = 'none';
+    if (backButton) (backButton as HTMLElement).style.display = 'none';
+    
+    // Trigger print dialog
+    window.print();
+    
+    // Restore navbar and footer after a delay
+    setTimeout(() => {
+      if (navbar) navbar.style.display = '';
+      if (footer) footer.style.display = '';
+      if (backButton) (backButton as HTMLElement).style.display = '';
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen bg-background antialiased">
       <Navbar />
       
       <div className="container mx-auto px-4 pt-24 pb-16">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8 back-button-container">
           <Link to="/">
             <Button variant="outline" className="gap-2">
-              <ArrowLeftIcon size={18} /> Back to Portfolio
+              <ArrowLeftIcon size={18} /> Back to Home
             </Button>
           </Link>
           
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={handleDownloadPDF}>
             <Download size={18} /> Download PDF
           </Button>
         </div>
         
-        <div className="bg-card rounded-lg border shadow-sm p-6 md:p-8 max-w-4xl mx-auto">
+        <div className="bg-card rounded-lg border shadow-sm p-6 md:p-8 max-w-4xl mx-auto resume-content">
           <header className="mb-8 text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Aziz Dhouib</h1>
             <h2 className="text-xl text-muted-foreground mb-4">
