@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDownIcon, Code, Zap, BarChart, BrainCircuit, Database, LineChart, Terminal } from 'lucide-react';
+import HeroScene from './HeroScene';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -79,7 +80,7 @@ const HeroSection = () => {
         ))}
       </div>
       
-      <div className="container mx-auto px-6 flex flex-col justify-center z-10">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 justify-center z-10">
         <div className="max-w-4xl">
           <h1 className="hero-title staggered-item text-5xl md:text-7xl font-bold tracking-tight mb-6">
             <span className="block text-white">Data Scientist &</span>
@@ -160,6 +161,7 @@ const HeroSection = () => {
             </a>
           </div>
         </div>
+        <HeroScene />
       </div>
       
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">

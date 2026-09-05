@@ -222,6 +222,77 @@ html {
   scroll-behavior: smooth;
 }
 
+.hero-scene {
+  position: relative;
+  width: min(42vw, 460px);
+  height: min(42vw, 460px);
+  min-width: 320px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 22px 36px hsl(var(--primary) / 0.14));
+}
+
+.hero-scene::before {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border: 1px solid hsl(var(--primary) / 0.18);
+  border-radius: 999px;
+  transform: rotate(22deg) scaleX(1.28);
+  pointer-events: none;
+}
+
+.hero-scene::after {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border: 1px solid hsl(var(--primary) / 0.09);
+  border-radius: 999px;
+  transform: rotate(-28deg) scaleX(1.1);
+  pointer-events: none;
+}
+
+.hero-scene-label {
+  position: absolute;
+  right: 4%;
+  bottom: 13%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid hsl(var(--primary) / 0.2);
+  border-radius: 999px;
+  background: hsl(var(--background) / 0.72);
+  color: hsl(var(--muted-foreground));
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.hero-scene-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: hsl(var(--primary));
+  box-shadow: 0 0 12px hsl(var(--primary) / 0.8);
+}
+
+@media (max-width: 1023px) {
+  .hero-scene {
+    width: min(76vw, 420px);
+    height: min(76vw, 420px);
+    align-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scene,
+  .hero-scene * {
+    animation: none !important;
+  }
+}
+
 /* Card Hover Effects */
 .project-card {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease, border-color 0.5s ease;
