@@ -19,7 +19,7 @@ const SkillCategory = ({ title, skills }: SkillCategoryProps) => {
         {skills.map((skill, index) => (
           <span
             key={index}
-            className="text-[13px] text-secondary-foreground bg-secondary/60 border border-border rounded-md px-2.5 py-[3px]"
+            className="text-[13px] text-secondary-foreground bg-secondary/60 border border-border rounded-md px-2.5 py-1"
           >
             {skill}
           </span>
@@ -56,30 +56,28 @@ const skillsData = [
   }
 ];
 
-// Add logo information for tech slider
+// One monochrome set, tinted to the muted text role, served from /assets/tech
 const techSlider = [
-  { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Supabase", logo: "https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg" },
-  { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-  { name: "OpenAI API", logo: "https://www.vectorlogo.zone/logos/openai/openai-icon.svg" },
-  { name: "Tailwind CSS", logo: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
-  { name: "Streamlit", logo: "https://seeklogo.com/images/S/streamlit-logo-1A3B208AE4-seeklogo.com.png" },
-  { name: "Pandas", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-  { name: "Machine Learning", logo: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png" },
-  { name: "RESTful APIs", logo: "https://cdn-icons-png.flaticon.com/512/10306/10306726.png" },
-  { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-  { name: "Scikit-learn", logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" },
-  { name: "TensorFlow", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
-  { name: "Power BI", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
-  { name: "Tableau", logo: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" },
-  { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" },
-  { name: "Azure", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
-  { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "GitHub Actions", logo: "https://github.githubassets.com/images/modules/site/features/actions-icon-actions.svg" }
+  { name: "React", logo: "/assets/tech/react.svg" },
+  { name: "Node.js", logo: "/assets/tech/nodedotjs.svg" },
+  { name: "TypeScript", logo: "/assets/tech/typescript.svg" },
+  { name: "Python", logo: "/assets/tech/python.svg" },
+  { name: "Supabase", logo: "/assets/tech/supabase.svg" },
+  { name: "PostgreSQL", logo: "/assets/tech/postgresql.svg" },
+  { name: "OpenAI API", logo: "/assets/tech/openai.svg" },
+  { name: "Tailwind CSS", logo: "/assets/tech/tailwindcss.svg" },
+  { name: "Streamlit", logo: "/assets/tech/streamlit.svg" },
+  { name: "Pandas", logo: "/assets/tech/pandas.svg" },
+  { name: "Firebase", logo: "/assets/tech/firebase.svg" },
+  { name: "Scikit-learn", logo: "/assets/tech/scikitlearn.svg" },
+  { name: "TensorFlow", logo: "/assets/tech/tensorflow.svg" },
+  { name: "Power BI", logo: "/assets/tech/powerbi.svg" },
+  { name: "Tableau", logo: "/assets/tech/tableau.svg" },
+  { name: "Docker", logo: "/assets/tech/docker.svg" },
+  { name: "AWS", logo: "/assets/tech/amazonwebservices.svg" },
+  { name: "Azure", logo: "/assets/tech/microsoftazure.svg" },
+  { name: "Git", logo: "/assets/tech/git.svg" },
+  { name: "GitHub Actions", logo: "/assets/tech/githubactions.svg" }
 ];
 
 const SkillsSection = () => {

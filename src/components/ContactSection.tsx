@@ -29,7 +29,7 @@ const formSchema = z.object({
 });
 
 const inputStyles =
-  "w-full bg-secondary/60 border border-border rounded-lg focus:border-github-accent/60 focus:ring-github-accent/20 transition-colors duration-150";
+  "w-full bg-secondary border border-foreground/10 rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:border-github-accent/60 focus-visible:ring-2 focus-visible:ring-github-accent/20 focus-visible:ring-offset-0 transition-colors duration-150";
 
 const ContactSection = () => {
   const [loading, setLoading] = useState(false);
@@ -51,9 +51,16 @@ const ContactSection = () => {
           if (entry.isIntersecting) {
             const title = entry.target.querySelector('.section-title');
             const subtitle = entry.target.querySelector('.section-subtitle');
+            const items = entry.target.querySelectorAll('.staggered-item');
 
             if (title) title.classList.add('active');
             if (subtitle) subtitle.classList.add('active');
+
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('active');
+              }, index * 60);
+            });
           }
         });
       },
@@ -170,7 +177,7 @@ const ContactSection = () => {
                       <FormControl>
                         <Textarea
                           placeholder="Your message"
-                          className="w-full min-h-[140px] bg-secondary/60 border border-border rounded-lg focus:border-github-accent/60 focus:ring-github-accent/20 transition-colors duration-150"
+                          className={`${inputStyles} min-h-[140px]`}
                           {...field}
                         />
                       </FormControl>

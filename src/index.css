@@ -83,16 +83,6 @@
 }
 
 @layer components {
-  /* Raised surface with a hairline — replaces the old glass treatment */
-  .glass-card {
-    @apply bg-card border border-border;
-  }
-
-  /* Kept name for compatibility; now solid primary text */
-  .text-gradient {
-    @apply text-foreground;
-  }
-
   .section-title {
     @apply text-2xl md:text-3xl font-medium tracking-tight text-foreground mb-2;
   }

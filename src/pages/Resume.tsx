@@ -3,8 +3,12 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowLeftIcon, Download } from 'lucide-react';
+import { ArrowLeft, Download, Mail, MapPin, Phone, SquareArrowOutUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <h3 className="mb-4 border-b border-border pb-2 text-[15px] font-medium text-foreground">{children}</h3>
+);
 
 const Resume = () => {
   const handleDownloadPDF = () => {
@@ -36,7 +40,7 @@ const Resume = () => {
         <div className="flex justify-between items-center mb-8 back-button-container">
           <Link to="/">
             <Button variant="outline" className="gap-2">
-              <ArrowLeftIcon size={18} /> Back to Home
+              <ArrowLeft size={18} /> Back to home
             </Button>
           </Link>
           
@@ -47,31 +51,35 @@ const Resume = () => {
         
         <div className="bg-card rounded-lg border shadow-sm p-6 md:p-8 max-w-4xl mx-auto resume-content">
           <header className="mb-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Aziz Dhouib</h1>
-            <h2 className="text-xl text-muted-foreground mb-4">
+            <h1 className="mb-2 text-3xl font-medium tracking-tight md:text-4xl">Aziz Dhouib</h1>
+            <h2 className="mb-4 text-lg text-muted-foreground">
               Data Scientist &amp; Full‑Stack Developer
             </h2>
-            
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="flex items-center gap-1">📍 Tunisia</span>
-              <span className="flex items-center gap-1">📧 azizdhouib2002@gmail.com</span>
-              <span className="flex items-center gap-1">📞 +21624725227</span>
-              <span className="flex items-center gap-1">
-                🔗 GitHub:&nbsp;
-                <a 
-                  href="https://github.com/JefryV2" 
-                  className="underline hover:text-primary" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  github.com/JefryV2
-                </a>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-secondary-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin size={16} className="text-muted-foreground" /> Tunisia
               </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Mail size={16} className="text-muted-foreground" /> azizdhouib2002@gmail.com
+              </span>
+              <span className="inline-flex items-center gap-1.5 tabular-nums">
+                <Phone size={16} className="text-muted-foreground" /> +216 24 725 227
+              </span>
+              <a
+                href="https://github.com/JefryV2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-foreground"
+              >
+                <SquareArrowOutUpRight size={16} className="text-muted-foreground" />
+                github.com/JefryV2
+              </a>
             </div>
           </header>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Summary</h3>
+            <SectionTitle>Summary</SectionTitle>
             <p className="text-muted-foreground">
               Data Scientist &amp; Full‑Stack Developer with expertise in AI‑driven applications, business intelligence, 
               and end‑to‑end product development. I build modern web and mobile experiences using React, TypeScript, 
@@ -81,13 +89,13 @@ const Resume = () => {
           </section>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Experience</h3>
+            <SectionTitle>Experience</SectionTitle>
             
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between items-start mb-1">
                   <h4 className="font-medium">Data Analyst & Business Intelligence Consultant</h4>
-                  <span className="text-sm text-muted-foreground">2022 – Present</span>
+                  <span className="text-sm text-muted-foreground tabular-nums">2022 – Present</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">Freelance & Independent Projects, Remote</p>
                 <ul className="list-disc list-inside space-y-2 text-sm">
@@ -102,7 +110,7 @@ const Resume = () => {
               <div>
                 <div className="flex justify-between items-start mb-1">
                   <h4 className="font-medium">Boston Consulting Group – Data Science Job Simulation</h4>
-                  <span className="text-sm text-muted-foreground">2022 – 2024</span>
+                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">Remote</p>
                 <ul className="list-disc list-inside space-y-2 text-sm">
@@ -115,7 +123,7 @@ const Resume = () => {
               <div>
                 <div className="flex justify-between items-start mb-1">
                   <h4 className="font-medium">Accenture – Data Analytics & Visualization Job Simulation</h4>
-                  <span className="text-sm text-muted-foreground">2022 – 2024</span>
+                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">Remote</p>
                 <ul className="list-disc list-inside space-y-2 text-sm">
@@ -128,7 +136,7 @@ const Resume = () => {
               <div>
                 <div className="flex justify-between items-start mb-1">
                   <h4 className="font-medium">KPM Group – Data Analytics Consulting Internship</h4>
-                  <span className="text-sm text-muted-foreground">2022 – 2024</span>
+                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">Remote</p>
                 <ul className="list-disc list-inside space-y-2 text-sm">
@@ -141,11 +149,11 @@ const Resume = () => {
           </section>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Projects</h3>
+            <SectionTitle>Projects</SectionTitle>
             
             <div className="space-y-4">
               <div>
-                <h4 className="font-medium">1️⃣ FlyTrader – Connectome-Inspired RL Trading Research</h4>
+                <h4 className="font-medium">FlyTrader – Connectome-Inspired RL Trading Research</h4>
                 <p className="text-sm">
                   Reinforcement-learning stock trader that uses a simulated fruit-fly connectome as a spiking feature extractor,
                   with honest out-of-sample backtests, seed intervals, and a FastAPI + Three.js dashboard for live evaluation
@@ -157,7 +165,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">2️⃣ Trinity Life Optimizer – Personal Analytics App</h4>
+                <h4 className="font-medium">Trinity Life Optimizer – Personal Analytics App</h4>
                 <p className="text-sm">
                   Mobile‑first life dashboard that unifies health, wealth, and relationships into interactive cards and analytics,
                   including stress modeling, correlations, and time‑series insights.
@@ -168,7 +176,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">3️⃣ Ruvopp – Personalized News & Insights App</h4>
+                <h4 className="font-medium">Ruvopp – Personalized News & Insights App</h4>
                 <p className="text-sm">
                   Cross‑platform mobile app that curates a personalized news feed with real‑time updates, engagement tracking,
                   and Supabase‑backed content preferences.
@@ -179,7 +187,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">4️⃣ Debate Guardian – AI &amp; Speech Recognition Tool</h4>
+                <h4 className="font-medium">Debate Guardian – AI &amp; Speech Recognition Tool</h4>
                 <p className="text-sm">
                   Real‑time fact‑checking platform that listens to debates, detects claims, and evaluates them with AI, providing
                   credibility scores, fallacy detection, and visual analytics.
@@ -190,7 +198,7 @@ const Resume = () => {
               </div>
               
               <div>
-                <h4 className="font-medium">5️⃣ Ethical Checker for Social Media Influencers &amp; Brands</h4>
+                <h4 className="font-medium">Ethical Checker for Social Media Influencers &amp; Brands</h4>
                 <p className="text-sm">
                   Platform that scores influencer/brand collaborations based on transparency, sentiment, and engagement to help
                   brands make ethical partnership decisions.
@@ -201,7 +209,7 @@ const Resume = () => {
               </div>
               
               <div>
-                <h4 className="font-medium">6️⃣ Job Application Automation Tool</h4>
+                <h4 className="font-medium">Job Application Automation Tool</h4>
                 <p className="text-sm">
                   Automation system that scrapes job postings, analyzes them with NLP, and matches them to candidate resumes to
                   prioritize the best‑fit opportunities.
@@ -212,7 +220,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">7️⃣ Market Analysis &amp; Trading Assistant</h4>
+                <h4 className="font-medium">Market Analysis &amp; Trading Assistant</h4>
                 <p className="text-sm">
                   Interactive trading dashboard that tracks stock movements, user trading behavior, and AI‑driven entry/exit
                   recommendations with risk‑aware analytics.
@@ -223,7 +231,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">8️⃣ RewardMax – Credit Card Rewards Optimizer</h4>
+                <h4 className="font-medium">RewardMax – Credit Card Rewards Optimizer</h4>
                 <p className="text-sm">
                   Web application that helps users maximize credit card rewards by tracking spending across cards, modeling category
                   bonuses, and recommending the best card to use at checkout. Includes interactive previews of recommendations,
@@ -237,40 +245,40 @@ const Resume = () => {
           </section>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Technical Skills</h3>
+            <SectionTitle>Technical Skills</SectionTitle>
             
             <div className="space-y-2 text-sm">
               <p>
-                ✅ <span className="font-medium">Frontend:</span> React, React Native, TypeScript, Vite, Tailwind CSS, shadcn/ui, Streamlit, Responsive Design, UI/UX.
+                <span className="font-medium">Frontend:</span> React, React Native, TypeScript, Vite, Tailwind CSS, shadcn/ui, Streamlit, Responsive Design, UI/UX.
               </p>
               <p>
-                ✅ <span className="font-medium">Backend &amp; Databases:</span> Node.js, Express, Supabase, PostgreSQL, SQLite, RESTful APIs, GraphQL, Firebase.
+                <span className="font-medium">Backend &amp; Databases:</span> Node.js, Express, Supabase, PostgreSQL, SQLite, RESTful APIs, GraphQL, Firebase.
               </p>
               <p>
-                ✅ <span className="font-medium">AI &amp; Data Science:</span> Python, Pandas, NumPy, Scikit‑learn, TensorFlow, NLP, OpenAI API, Gemini API, Machine Learning, Data Analysis.
+                <span className="font-medium">AI &amp; Data Science:</span> Python, Pandas, NumPy, Scikit‑learn, TensorFlow, NLP, OpenAI API, Gemini API, Machine Learning, Data Analysis.
               </p>
               <p>
-                ✅ <span className="font-medium">Data Visualization &amp; BI:</span> Power BI, Tableau, Plotly, Seaborn, Chart.js, Recharts, Data Dashboards, Real‑time Analytics.
+                <span className="font-medium">Data Visualization &amp; BI:</span> Power BI, Tableau, Plotly, Seaborn, Chart.js, Recharts, Data Dashboards, Real‑time Analytics.
               </p>
               <p>
-                ✅ <span className="font-medium">Cloud, DevOps &amp; Tooling:</span> Supabase, AWS, Azure, Docker, Git, GitHub Actions, CI/CD, ETL Pipelines, Automation.
+                <span className="font-medium">Cloud, DevOps &amp; Tooling:</span> Supabase, AWS, Azure, Docker, Git, GitHub Actions, CI/CD, ETL Pipelines, Automation.
               </p>
             </div>
           </section>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Education</h3>
-            <p className="text-sm">🎓 Bachelor of Science in Computer Science (University of the People, Remote – Present)</p>
+            <SectionTitle>Education</SectionTitle>
+            <p className="text-sm">Bachelor of Science in Computer Science (University of the People, Remote – Present)</p>
           </section>
           
           <section className="mb-8">
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Certifications</h3>
-            <p className="text-sm">🏆 IBM Data Analytics with Excel and R – Coursera</p>
-            <p className="text-sm">🏆 IBM Data Analysis and Visualization Foundations – Coursera</p>
+            <SectionTitle>Certifications</SectionTitle>
+            <p className="text-sm">IBM Data Analytics with Excel and R – Coursera</p>
+            <p className="text-sm">IBM Data Analysis and Visualization Foundations – Coursera</p>
           </section>
           
           <section>
-            <h3 className="text-xl font-semibold border-b pb-2 mb-4">🔹 Languages</h3>
+            <SectionTitle>Languages</SectionTitle>
             <div className="grid grid-cols-3 gap-4 text-sm">
               <div>
                 <p className="font-medium">English</p>
