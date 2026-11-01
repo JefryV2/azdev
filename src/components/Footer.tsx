@@ -1,18 +1,23 @@
 
 import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRightIcon, PiggyBank, Github } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
+const quickLinks = [
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' }
+];
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [project, setProject] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
+
   const handleInvestmentInterest = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -23,67 +28,65 @@ const Footer = () => {
     setProject('');
     setIsDialogOpen(false);
   };
-  
+
   return (
-    <footer className="py-12 border-t border-primary/20 bg-black relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-primary/5 blur-3xl"></div>
-      
-      {/* Enhanced Grid overlay with animation */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60"></div>
-      
-      <div className="container px-6 mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div className="relative overflow-hidden">
-            <h3 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 mb-4">Aziz Dhouib</h3>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Specializing in full-stack AI-driven applications that combine elegant interfaces with powerful data science.
+    <footer className="py-16 border-t border-border bg-background">
+      <div className="container px-6 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div>
+            <h3 className="font-medium text-base text-foreground mb-3">Aziz Dhouib</h3>
+            <p className="text-muted-foreground text-sm leading-6 max-w-xs">
+              Data science and full-stack work: trading systems, analytics platforms and ML-powered apps.
             </p>
           </div>
-          
+
           <div>
-            <h3 className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 mb-4">Quick Links</h3>
-            <nav className="flex flex-col space-y-3">
-              <a href="#hero" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group">
-                <span className="w-0 h-px bg-primary group-hover:w-3 transition-all duration-300 mr-2"></span>
-                Home
-              </a>
-              <a href="#projects" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group">
-                <span className="w-0 h-px bg-primary group-hover:w-3 transition-all duration-300 mr-2"></span>
-                Projects
-              </a>
-              <a href="#skills" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group">
-                <span className="w-0 h-px bg-primary group-hover:w-3 transition-all duration-300 mr-2"></span>
-                Skills
-              </a>
-              <a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group">
-                <span className="w-0 h-px bg-primary group-hover:w-3 transition-all duration-300 mr-2"></span>
-                Contact
+            <h3 className="font-medium text-sm text-foreground mb-3">Links</h3>
+            <nav className="flex flex-col gap-2.5">
+              {quickLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 w-fit"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a
+                href="https://github.com/JefryV2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 w-fit"
+              >
+                <Github className="h-4 w-4" />
+                @JefryV2
               </a>
             </nav>
           </div>
-          
+
           <div>
-            <h3 className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 mb-4">Project Investment</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <h3 className="font-medium text-sm text-foreground mb-3">Project investment</h3>
+            <p className="text-sm text-muted-foreground leading-6 mb-4">
               Interested in investing in one of my projects? Let me know which one caught your attention.
             </p>
-            
+
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="w-full bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary transition-all duration-300">
-                  <PiggyBank className="h-4 w-4 mr-2" /> Invest in a Project
+                <Button
+                  variant="outline"
+                  className="w-full h-10 gap-2 border-border bg-transparent text-secondary-foreground hover:bg-secondary hover:text-secondary-foreground"
+                >
+                  <PiggyBank className="h-4 w-4 text-muted-foreground" /> Invest in a project
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-github-darker border border-primary/20">
+              <DialogContent className="bg-card border-border">
                 <DialogHeader>
-                  <DialogTitle className="text-white">Investment Interest</DialogTitle>
+                  <DialogTitle className="text-foreground">Investment interest</DialogTitle>
                   <DialogDescription className="text-muted-foreground">
                     Share your details and which project interests you.
                   </DialogDescription>
                 </DialogHeader>
-                
+
                 <form onSubmit={handleInvestmentInterest} className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <label htmlFor="project" className="text-sm text-muted-foreground">Which project interests you?</label>
@@ -92,55 +95,38 @@ const Footer = () => {
                       placeholder="Project name (optional)"
                       value={project}
                       onChange={(e) => setProject(e.target.value)}
-                      className="bg-black/50 border-primary/20 focus:border-primary/50 transition-colors"
+                      className="bg-secondary/60 border-border rounded-lg"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm text-muted-foreground">Your email</label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder="Your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="bg-black/50 border-primary/20 focus:border-primary/50 transition-colors"
+                      className="bg-secondary/60 border-border rounded-lg"
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-primary/20 hover:bg-primary/30 border border-primary/30 transition-all duration-300"
-                  >
-                    Submit Interest <ArrowRightIcon className="h-4 w-4 ml-2" />
+
+                  <Button type="submit" className="w-full h-10 rounded-lg">
+                    Submit interest <ArrowRightIcon className="h-4 w-4 ml-2" />
                   </Button>
                 </form>
               </DialogContent>
             </Dialog>
           </div>
         </div>
-        
-        <div className="mt-10 pt-6 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4">
+
+        <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Aziz Dhouib. All rights reserved.
+            © {currentYear} Aziz Dhouib
           </p>
 
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/JefryV2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github className="h-4 w-4" />
-              <span>@JefryV2</span>
-            </a>
-
-            <span className="text-xs text-muted-foreground/60 inline-block px-2 py-1 border border-primary/10 rounded-md bg-black/50 hover:bg-primary/5 transition-colors">
-              v1.0.0
-            </span>
-          </div>
+          <p className="font-mono text-xs text-muted-foreground">v1.0.0</p>
         </div>
       </div>
     </footer>

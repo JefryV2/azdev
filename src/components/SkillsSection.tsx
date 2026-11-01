@@ -5,29 +5,21 @@ import { cn } from '@/lib/utils';
 interface SkillCategoryProps {
   title: string;
   skills: string[];
-  delay?: string;
 }
 
-const SkillCategory = ({ title, skills, delay = 'delay-0' }: SkillCategoryProps) => {
+const SkillCategory = ({ title, skills }: SkillCategoryProps) => {
   return (
-    <div className={cn(
-      "staggered-item glass-card rounded-2xl p-6 h-full",
-      "bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30",
-      "backdrop-blur-xl border border-github-border/50",
-      "shadow-xl shadow-black/20",
-      "hover:shadow-2xl hover:shadow-github-accent/10 hover:border-github-accent/30",
-      "hover:-translate-y-1 transition-all duration-500",
-      delay
-    )}>
-      <h3 className="text-lg font-bold mb-5 text-white flex items-center gap-2">
-        <span className="w-1.5 h-6 bg-gradient-to-b from-github-accent to-github-accent/50 rounded-full"></span>
-        {title}
-      </h3>
-      <div className="flex flex-wrap gap-2.5">
+    <div
+      className={cn(
+        'staggered-item rounded-xl border border-border bg-card p-6'
+      )}
+    >
+      <h3 className="text-[15px] font-medium text-foreground mb-4">{title}</h3>
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (
-          <span 
-            key={index} 
-            className="text-sm bg-gradient-to-r from-github-accent/15 to-github-accent/10 text-github-accent/90 rounded-full px-4 py-2 mb-2 border border-github-accent/25 shadow-md hover:shadow-lg hover:scale-105 hover:border-github-accent/40 transition-all duration-300 font-medium"
+          <span
+            key={index}
+            className="text-[13px] text-secondary-foreground bg-secondary/60 border border-border rounded-md px-2.5 py-[3px]"
           >
             {skill}
           </span>
@@ -92,7 +84,7 @@ const techSlider = [
 
 const SkillsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -101,25 +93,25 @@ const SkillsSection = () => {
             const title = entry.target.querySelector('.section-title');
             const subtitle = entry.target.querySelector('.section-subtitle');
             const items = entry.target.querySelectorAll('.staggered-item');
-            
+
             if (title) title.classList.add('active');
-            if (subtitle) subtitle.classList.add('active', 'delay-300');
-            
+            if (subtitle) subtitle.classList.add('active');
+
             items.forEach((item, index) => {
               setTimeout(() => {
                 item.classList.add('active');
-              }, 300 + index * 100);
+              }, index * 60);
             });
           }
         });
       },
       { threshold: 0.1 }
     );
-    
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -128,39 +120,30 @@ const SkillsSection = () => {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 relative bg-gradient-to-b from-github-dark to-github-darker">
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-github-accent/5 filter blur-3xl opacity-20" />
-      </div>
-      
+    <section id="skills" ref={sectionRef} className="py-24 border-t border-border">
       <div className="container px-6 mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title staggered-item text-gradient">Technical Expertise</h2>
-          <p className="section-subtitle staggered-item mx-auto">
-            A comprehensive toolkit for building modern, AI-driven applications
+        <div className="max-w-2xl">
+          <h2 className="section-title staggered-item">Technical expertise</h2>
+          <p className="section-subtitle staggered-item">
+            Tools I reach for across research, apps and deployment
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {skillsData.map((category, index) => (
-            <SkillCategory 
-              key={index} 
-              {...category} 
-              delay={`delay-${(index + 1) * 100}`}
-            />
+            <SkillCategory key={index} {...category} />
           ))}
         </div>
-        
-        {/* Tech Slider with Logos - Fixed to prevent text overflow */}
-        <div className="staggered-item overflow-hidden mt-16 rounded-2xl glass-card p-6 bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30 backdrop-blur-xl border border-github-border/50 shadow-xl shadow-black/20">
-          <div className="tech-slider flex space-x-8 whitespace-nowrap">
+
+        <div className="staggered-item overflow-hidden rounded-xl border border-border bg-card p-4">
+          <div className="tech-slider flex space-x-6 whitespace-nowrap">
             {[...techSlider, ...techSlider].map((tech, index) => (
-              <div 
+              <div
                 key={index}
-                className="text-sm md:text-base font-medium px-4 py-2 bg-gradient-to-r from-github-accent/15 to-github-accent/10 border border-github-accent/25 rounded-full inline-flex items-center space-x-2 min-w-fit shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-border bg-secondary/60 min-w-fit"
               >
-                <img src={tech.logo} alt={tech.name} className="w-5 h-5 flex-shrink-0" />
-                <span className="truncate max-w-[120px] text-github-accent/90">{tech.name}</span>
+                <img src={tech.logo} alt={tech.name} className="w-4 h-4 flex-shrink-0" />
+                <span className="font-mono text-xs text-muted-foreground">{tech.name}</span>
               </div>
             ))}
           </div>

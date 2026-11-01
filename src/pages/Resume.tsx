@@ -145,7 +145,19 @@ const Resume = () => {
             
             <div className="space-y-4">
               <div>
-                <h4 className="font-medium">1️⃣ Trinity Life Optimizer – Personal Analytics App</h4>
+                <h4 className="font-medium">1️⃣ FlyTrader – Connectome-Inspired RL Trading Research</h4>
+                <p className="text-sm">
+                  Reinforcement-learning stock trader that uses a simulated fruit-fly connectome as a spiking feature extractor,
+                  with honest out-of-sample backtests, seed intervals, and a FastAPI + Three.js dashboard for live evaluation
+                  and multi-asset portfolio allocation.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium">Tech Stack:</span> Python, PyTorch, Gymnasium, FastAPI, Three.js, FlyWire connectome, reinforcement learning.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">2️⃣ Trinity Life Optimizer – Personal Analytics App</h4>
                 <p className="text-sm">
                   Mobile‑first life dashboard that unifies health, wealth, and relationships into interactive cards and analytics,
                   including stress modeling, correlations, and time‑series insights.
@@ -156,7 +168,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">2️⃣ Ruvopp – Personalized News & Insights App</h4>
+                <h4 className="font-medium">3️⃣ Ruvopp – Personalized News & Insights App</h4>
                 <p className="text-sm">
                   Cross‑platform mobile app that curates a personalized news feed with real‑time updates, engagement tracking,
                   and Supabase‑backed content preferences.
@@ -167,7 +179,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">3️⃣ Debate Guardian – AI &amp; Speech Recognition Tool</h4>
+                <h4 className="font-medium">4️⃣ Debate Guardian – AI &amp; Speech Recognition Tool</h4>
                 <p className="text-sm">
                   Real‑time fact‑checking platform that listens to debates, detects claims, and evaluates them with AI, providing
                   credibility scores, fallacy detection, and visual analytics.
@@ -178,7 +190,7 @@ const Resume = () => {
               </div>
               
               <div>
-                <h4 className="font-medium">4️⃣ Ethical Checker for Social Media Influencers &amp; Brands</h4>
+                <h4 className="font-medium">5️⃣ Ethical Checker for Social Media Influencers &amp; Brands</h4>
                 <p className="text-sm">
                   Platform that scores influencer/brand collaborations based on transparency, sentiment, and engagement to help
                   brands make ethical partnership decisions.
@@ -189,7 +201,7 @@ const Resume = () => {
               </div>
               
               <div>
-                <h4 className="font-medium">5️⃣ Job Application Automation Tool</h4>
+                <h4 className="font-medium">6️⃣ Job Application Automation Tool</h4>
                 <p className="text-sm">
                   Automation system that scrapes job postings, analyzes them with NLP, and matches them to candidate resumes to
                   prioritize the best‑fit opportunities.
@@ -200,7 +212,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">6️⃣ Market Analysis &amp; Trading Assistant</h4>
+                <h4 className="font-medium">7️⃣ Market Analysis &amp; Trading Assistant</h4>
                 <p className="text-sm">
                   Interactive trading dashboard that tracks stock movements, user trading behavior, and AI‑driven entry/exit
                   recommendations with risk‑aware analytics.
@@ -211,7 +223,7 @@ const Resume = () => {
               </div>
 
               <div>
-                <h4 className="font-medium">7️⃣ RewardMax – Credit Card Rewards Optimizer</h4>
+                <h4 className="font-medium">8️⃣ RewardMax – Credit Card Rewards Optimizer</h4>
                 <p className="text-sm">
                   Web application that helps users maximize credit card rewards by tracking spending across cards, modeling category
                   bonuses, and recommending the best card to use at checkout. Includes interactive previews of recommendations,

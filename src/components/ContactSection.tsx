@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
 import { Mail, Send } from 'lucide-react';
-import { 
+import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage 
+  FormMessage
 } from '@/components/ui/form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -29,10 +28,13 @@ const formSchema = z.object({
   }),
 });
 
+const inputStyles =
+  "w-full bg-secondary/60 border border-border rounded-lg focus:border-github-accent/60 focus:ring-github-accent/20 transition-colors duration-150";
+
 const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +43,7 @@ const ContactSection = () => {
       message: "",
     },
   });
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,26 +51,19 @@ const ContactSection = () => {
           if (entry.isIntersecting) {
             const title = entry.target.querySelector('.section-title');
             const subtitle = entry.target.querySelector('.section-subtitle');
-            const items = entry.target.querySelectorAll('.staggered-item');
-            
+
             if (title) title.classList.add('active');
-            if (subtitle) subtitle.classList.add('active', 'delay-300');
-            
-            items.forEach((item, index) => {
-              setTimeout(() => {
-                item.classList.add('active');
-              }, 300 + index * 100);
-            });
+            if (subtitle) subtitle.classList.add('active');
           }
         });
       },
       { threshold: 0.1 }
     );
-    
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -78,29 +73,29 @@ const ContactSection = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
-    
+
     try {
       const formData = new FormData();
-      
+
+      formData.append("access_key", "c293a92b-8a13-4ef1-8817-7cca2057cf09");
+      formData.append("subject", "New message from your portfolio");
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("message", values.message);
-      formData.append("_autoresponse", "Thanks for your message! I'll get back to you soon.");
-      formData.append("_next", window.location.href);
-      
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         toast({
           title: "Message sent!",
           description: "Thanks for reaching out. I'll get back to you soon.",
         });
-        
+
         form.reset();
       } else {
         throw new Error(data.message || "Something went wrong!");
@@ -118,21 +113,17 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 relative">
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-primary/5 filter blur-3xl opacity-20" />
-      </div>
-      
+    <section id="contact" ref={sectionRef} className="py-24 border-t border-border">
       <div className="container px-6 mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title staggered-item text-gradient">Get In Touch</h2>
-          <p className="section-subtitle staggered-item mx-auto">
-            Have a project in mind or want to discuss a collaboration? I'd love to hear from you.
+        <div className="max-w-2xl mb-10">
+          <h2 className="section-title staggered-item">Get in touch</h2>
+          <p className="section-subtitle staggered-item">
+            Have a project in mind or want to discuss a collaboration?
           </p>
         </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-2xl p-8 md:p-10 shadow-2xl shadow-black/30 staggered-item bg-gradient-to-br from-secondary/60 via-secondary/40 to-secondary/30 backdrop-blur-xl border border-github-border/50 hover:border-github-accent/30 transition-all duration-500">
+
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-2xl border border-border bg-card p-8 md:p-10 staggered-item">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,15 +132,11 @@ const ContactSection = () => {
                     name="name"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-sm font-semibold block text-white">
+                        <FormLabel className="text-sm font-medium block text-foreground">
                           Name
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Your name"
-                            className="w-full bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
-                            {...field}
-                          />
+                          <Input placeholder="Your name" className={inputStyles} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -160,35 +147,30 @@ const ContactSection = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-sm font-semibold block text-white">
+                        <FormLabel className="text-sm font-medium block text-foreground">
                           Email
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="Your email"
-                            className="w-full bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
-                            {...field}
-                          />
+                          <Input type="email" placeholder="Your email" className={inputStyles} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                
+
                 <FormField
                   control={form.control}
                   name="message"
                   render={({ field }) => (
                     <FormItem className="space-y-2">
-                      <FormLabel className="text-sm font-semibold block text-white">
+                      <FormLabel className="text-sm font-medium block text-foreground">
                         Message
                       </FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Your message"
-                          className="w-full min-h-[150px] bg-secondary/80 border-github-border/50 focus:border-github-accent/50 focus:ring-github-accent/20 transition-all duration-300"
+                          className="w-full min-h-[140px] bg-secondary/60 border border-border rounded-lg focus:border-github-accent/60 focus:ring-github-accent/20 transition-colors duration-150"
                           {...field}
                         />
                       </FormControl>
@@ -196,33 +178,36 @@ const ContactSection = () => {
                     </FormItem>
                   )}
                 />
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto flex items-center justify-center gap-2 shadow-xl shadow-github-accent/20 bg-gradient-to-r from-github-accent to-github-accent/80 hover:from-github-accent/90 hover:to-github-accent text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-github-accent/30"
+                  className="h-11 px-6 rounded-lg font-medium"
                 >
                   {loading ? (
-                    <>Sending...</>
+                    <>Sending…</>
                   ) : (
                     <>
-                      Send Message <Send className="h-4 w-4" />
+                      Send message <Send className="h-4 w-4" />
                     </>
                   )}
                 </Button>
               </form>
             </Form>
-            
-            <div className="mt-10 pt-8 border-t border-github-border/50">
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-br from-github-accent/10 to-github-accent/5 border border-github-accent/20">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-github-accent/20 to-github-accent/10 border border-github-accent/30 text-github-accent shadow-lg">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold mb-1 text-white">Email</h3>
-                  <p className="text-muted-foreground text-sm">azizdhouib2002@gmail.com</p>
-                </div>
+
+            <div className="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <p className="font-mono text-sm text-muted-foreground">
+                  azizdhouib2002@gmail.com
+                </p>
               </div>
+              <a
+                href="mailto:azizdhouib2002@gmail.com"
+                className="text-sm text-foreground hover:text-github-accent transition-colors duration-150 w-fit"
+              >
+                Or email me directly →
+              </a>
             </div>
           </div>
         </div>

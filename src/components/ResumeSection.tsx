@@ -170,6 +170,11 @@ const ResumeSection = () => {
 
   const projects = [
     {
+      title: "FlyTrader (Connectome-Inspired RL Trading)",
+      description: "A fruit-fly connectome–inspired reinforcement-learning trader with honest out-of-sample evaluation and a FastAPI dashboard.",
+      techStack: "Python, PyTorch, Gymnasium, FastAPI, Three.js, FlyWire Connectome"
+    },
+    {
       title: "Debate Guardian (AI & Speech Recognition Tool)",
       description: "A real-time fact-checking platform to promote honesty and accountability in debates using AI and speech recognition.",
       techStack: "React, TypeScript, Google Cloud Speech-to-Text, Gemini API, Node.js, Chart.js, TensorFlow.js"

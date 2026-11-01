@@ -63,26 +63,16 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				github: {
-					dark: '#0d1117',
-					darker: '#010409',
-					border: '#30363d',
-					accent: '#2ea043', // GitHub green
+					dark: '#0b0d14', // page background
+					darker: '#11141c', // raised surface / card
+					border: '#1c2029', // hairline
+					accent: '#3fb950', // GitHub green (text-safe on dark)
 					highlight: '#388bfd'
 				}
 			},
 			fontFamily: {
-				sans: [
-					'SF Pro Display',
-					'system-ui',
-					'-apple-system',
-					'BlinkMacSystemFont',
-					'San Francisco',
-					'Helvetica Neue',
-					'Helvetica',
-					'Arial',
-					'sans-serif'
-				],
-				mono: ['SF Mono', 'Menlo', 'Monaco', 'Courier', 'monospace']
+				sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+				mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -99,7 +89,7 @@ export default {
 					to: { height: '0' }
 				},
 				'fade-in': {
-					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'0%': { opacity: '0', transform: 'translateY(8px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
 				'fade-in-left': {
@@ -109,24 +99,12 @@ export default {
 				'fade-in-right': {
 					'0%': { opacity: '0', transform: 'translateX(20px)' },
 					'100%': { opacity: '1', transform: 'translateX(0)' }
-				},
-				float: {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-5px)' }
-				},
-				'text-shimmer': {
-					'0%': { backgroundPosition: '0% 50%' },
-					'100%': { backgroundPosition: '100% 50%' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.7s ease-out forwards',
-				'fade-in-left': 'fade-in-left 0.7s ease-out forwards',
-				'fade-in-right': 'fade-in-right 0.7s ease-out forwards',
-				'float': 'float 3s ease-in-out infinite',
-				'shimmer': 'text-shimmer 3s ease infinite'
+				'fade-in': 'fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards'
 			}
 		}
 	},
