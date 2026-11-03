@@ -8,22 +8,25 @@ interface AsciiPortraitProps {
 }
 
 /**
- * Tone settings derived from the portrait itself. The photo is a tight
- * head-and-shoulders crop with a dark background, so the pipeline is:
+ * Tone settings derived from the portrait itself. The photo is a head-and-
+ * shoulders shot on a bright, colourless office background, so the pipeline is:
  *
- *   1. crop to the face (fractions of the source image)
+ *   1. crop to the head (fractions of the source image)
  *   2. sample luminance on a canvas at the glyph grid
- *   3. radial vignette to clear the background clutter
- *   4. levels + gamma so skin spans the whole glyph ramp
- *   5. deadzone so near-black cells become spaces instead of stray dots
+ *   3. key out blown-out neutral pixels — the background is bright but has
+ *      almost no chroma, while skin sits well above it
+ *   4. radial vignette to clear whatever background is left at the edges
+ *   5. levels + gamma so skin spans the whole glyph ramp
+ *   6. deadzone so near-black cells become spaces instead of stray dots
  */
-const CROP = { x: 0.1333, y: 0.0933, w: 0.64, h: 0.64 };
+const CROP = { x: 0.1953, y: 0, w: 0.6055, h: 0.4036 };
 const RAMP = ' .:-=+*#%@';
 const BLACK = 0.26;
-const WHITE = 0.8;
-const GAMMA = 0.95;
+const WHITE = 0.83;
+const GAMMA = 1.05;
 const DEADZONE = 0.06;
-const VIGNETTE = { cx: 0.55, cy: 0.42, radius: 0.32, span: 0.54, xScale: 1.05 };
+const KEY = { lumMin: 0.45, chromaMax: 0.09, dim: 0.16 };
+const VIGNETTE = { cx: 0.5, cy: 0.48, radius: 0.3, span: 0.32, xScale: 1 };
 
 const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
 
@@ -74,11 +77,17 @@ const AsciiPortrait = ({ src, cols = 96, className }: AsciiPortraitProps) => {
 
         for (let x = 0; x < cols; x++) {
           const i = (y * cols + x) * 4;
-          let lum =
-            (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          let lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 
           if (img) {
-            // Vignette — the photo's background is busy trees, so fade the frame out
+            // Key — the office background is bright but colourless, skin is not
+            const chroma = (Math.max(r, g, b) - Math.min(r, g, b)) / 255;
+            if (lum > KEY.lumMin && chroma < KEY.chromaMax) lum *= KEY.dim;
+
+            // Vignette — fade whatever background the key left at the edges
             const dx = (x / cols - VIGNETTE.cx) * VIGNETTE.xScale;
             const dy = y / rows - VIGNETTE.cy;
             const radius = Math.sqrt(dx * dx + dy * dy);

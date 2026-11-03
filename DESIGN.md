@@ -64,23 +64,37 @@ typographic structure instead of decoration.
 ## ASCII portrait
 
 `src/components/AsciiPortrait.tsx` turns `/public/assets/portrait.jpg` into text. The
-photo is a 150×150 headshot on a dark background, so the pipeline is tuned for it:
+photo is a 640×960 head-and-shoulders shot on a bright, colourless office background,
+which is the opposite of the retired dark-background headshot the pipeline was built
+for — brightness alone no longer separates subject from backdrop, so a chroma key does:
 
 | Step | Setting |
 |---|---|
-| crop | `x 0.133 · y 0.093 · w 0.64 · h 0.64` (tight to the face) |
+| crop | `x 0.1953 · y 0 · w 0.6055 · h 0.4036` (square, tight to the head) |
 | grid | 96 columns × 48 rows (cell aspect 2:1, so `line-height` = 2 × char width) |
 | ramp | ` .:-=+*#%@` (10 steps) |
-| vignette | centred at `0.55, 0.42`, starts at r 0.32, full by r 0.86 — clears the trees |
-| levels | black `0.26` · white `0.80` · gamma `0.95` |
+| key | `lum > 0.45 && chroma < 0.09` → `lum × 0.16` — the blown background sits at chroma 0.02–0.05, skin at 0.13–0.20 |
+| vignette | centred at `0.5, 0.48`, starts at r 0.30, full by r 0.62 — clears whatever the key left at the edges |
+| levels | black `0.26` · white `0.83` · gamma `1.05` |
 | deadzone | below `0.06` → space, so the background stays empty instead of speckled |
+
+`chroma` is `(max − min) / 255` and `lum` is the Rec. 709 weighted sum, both read off
+the same canvas sample as the luminance.
 
 Missing file → generated "AD" monogram through the same ramp, so the layout never
 breaks. The component renders bare text — no card, header row or caption.
 
+The favicon is the same render at 32 columns × 16 rows. That grid is the smallest one
+whose glyph shapes still survive being flattened to 16px, and it needs a wider tone
+spread than the hero because the browser averages each glyph down to about half a
+pixel: black `0.26` · white `0.75` · gamma `1.05` · deadzone `0.10`. `favicon.ico`
+carries 16/32/48 PNG entries; each is rasterised and then re-mapped onto the two-colour
+palette, because Chrome renders SVG text with LCD subpixel antialiasing and the colour
+fringes otherwise bake red and orange pixels into the icon.
+
 If the photo is replaced, re-tune `CROP` first (the crop is a fraction of the source,
-so any resolution works), then the levels — `BLACK` controls how much background
-survives, `WHITE` how fast highlights saturate.
+so any resolution works), then the key thresholds, then the levels — `BLACK` controls
+how much background survives, `WHITE` how fast highlights saturate.
 
 ## Open
 
