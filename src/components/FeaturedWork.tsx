@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { featuredProjects, projects } from '@/data/projects';
 import ValidationLedger from '@/components/ValidationLedger';
+import { cn } from '@/lib/utils';
 
 const FeaturedWork = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,12 @@ const FeaturedWork = () => {
           {featuredProjects.map((project, index) => (
             <article
               key={project.id}
-              className="staggered-item grid lg:grid-cols-[56px_1fr_400px] gap-6 lg:gap-10 py-10 border-b border-border"
+              className={cn(
+                'staggered-item grid gap-6 lg:gap-10 py-10 border-b border-border',
+                project.image || project.ledger
+                  ? 'lg:grid-cols-[56px_1fr_400px]'
+                  : 'lg:grid-cols-[56px_1fr]'
+              )}
             >
               <div className="font-mono text-xs text-muted-foreground pt-1.5">
                 {String(index + 1).padStart(2, '0')}
@@ -118,24 +124,26 @@ const FeaturedWork = () => {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                {project.image && (
-                  <figure>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full block"
-                      loading="lazy"
-                    />
-                    <figcaption className="mt-2.5 font-mono text-[10.5px] leading-4 text-muted-foreground">
-                      {project.ledger
-                        ? 'Volumetric smoke over the parametric car — analytic potential flow, not a CFD result'
-                        : `${project.domain} — ${project.title}`}
-                    </figcaption>
-                  </figure>
-                )}
-                {project.ledger && <ValidationLedger />}
-              </div>
+              {(project.image || project.ledger) && (
+                <div className="space-y-4 lg:self-center">
+                  {project.image && (
+                    <figure>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full block"
+                        loading="lazy"
+                      />
+                      <figcaption className="mt-2.5 font-mono text-[10.5px] leading-4 text-muted-foreground">
+                        {project.ledger
+                          ? 'Volumetric smoke over the parametric car — analytic potential flow, not a CFD result'
+                          : (project.caption ?? `${project.domain} — ${project.title}`)}
+                      </figcaption>
+                    </figure>
+                  )}
+                  {project.ledger && <ValidationLedger />}
+                </div>
+              )}
             </article>
           ))}
         </div>

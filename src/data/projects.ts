@@ -11,11 +11,32 @@ export interface Project {
   demoUrl?: string;
   codeUrl?: string;
   image?: string;
+  caption?: string;
   featured?: boolean;
   ledger?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: 'business-checkup',
+    title: 'Business Check-up',
+    domain: 'Business intelligence · small business',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Prisma'],
+    year: '2026',
+    state: 'active',
+    featured: true,
+    summary:
+      'A business website or a spreadsheet export goes in; a plain-language report comes out — what the numbers say, what is going wrong, what to fix first.',
+    story: [
+      'Two ways in. The app reads a public business page over plain HTTP, with a headless Puppeteer fallback for sites that block or render in JavaScript, and scores it with five rule-based indicators. Or it takes a CSV, XLSX or XLS upload — up to 10 MB and 10,000 rows — detects the business profile and the role of each column, then runs totals and movement, change attribution, concentration, profit by dimension, customer mix and a data-quality pass. Multi-sheet workbooks are scored per sheet and you pick which one to analyse.',
+      'Every number comes from a deterministic TypeScript module rather than a model, so a spreadsheet report never needs an API key. Depth analyses are suppressed when the columns they need are missing or coverage falls below 80%, and the report names what would unlock them. Traffic and audience figures on the public-details page are labelled as heuristic estimates. Saved reports belong to an httpOnly cookie, stored through Prisma on PostgreSQL when configured and in a local db.json when not.',
+    ],
+    note: 'Built for an owner with no analyst. When the data cannot support a question the report says so instead of estimating an answer — the limitations are part of the product, not a footnote.',
+    image: '/assets/business-checkup.png',
+    caption:
+      'Analyses catalogue on the bundled synthetic workbook — break-even is marked "needs data" and waits for the column this file lacks',
+    codeUrl: 'https://github.com/JefryV2/bi-mvp',
+  },
   {
     id: 'motorsport-aero-simulator',
     title: 'Motorsport Aero Simulator',

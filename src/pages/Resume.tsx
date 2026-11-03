@@ -81,6 +81,12 @@ const experience = [
 
 const projects = [
   {
+    title: 'Business Check-up',
+    note: 'A business website or a spreadsheet export goes in, a plain-language report comes out. Every figure is computed by deterministic TypeScript modules, and the report states when the data cannot support a question.',
+    stack: 'Next.js · TypeScript · Tailwind CSS · Recharts · Prisma',
+    link: 'https://github.com/JefryV2/bi-mvp',
+  },
+  {
     title: 'Motorsport Aero Simulator',
     note: 'Three force tiers — empirical, vortex lattice, real RANS — behind one interface, with a validation ledger that records its own failures.',
     stack: 'Python · FastAPI · OpenFOAM · Three.js · Optuna',
