@@ -80,6 +80,14 @@
     @apply opacity-0;
     animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+
+  /* Never let the entrance animation be the reason content is invisible */
+  @media (prefers-reduced-motion: reduce) {
+    section {
+      opacity: 1;
+      animation: none;
+    }
+  }
 }
 
 @layer components {
@@ -163,9 +171,20 @@ html {
     color: black !important;
   }
 
+  .resume-page {
+    background: white !important;
+  }
+
   .resume-content * {
     color: black !important;
     background: white !important;
+    border-color: #d4d4d4 !important;
+  }
+
+  /* Sections fade in on screen; printing must not depend on an animation frame */
+  section {
+    opacity: 1 !important;
+    animation: none !important;
   }
 
   .resume-content h1,

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concept C — The editorial profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #faf8f3;
+    --ink: #15130e;
+    --ink-2: #49453d;
+    --muted: #7b756a;
+    --line: rgba(21, 19, 14, 0.14);
+    --accent: #1d5c3a;
+    --accent-soft: #e7eee6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .serif { font-family: 'Fraunces', Georgia, serif; font-weight: 400; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  header { padding: 28px 0; }
+  .bar { display: flex; align-items: center; justify-content: space-between; }
+  .bar .mark { font-family: 'Fraunces', serif; font-size: 20px; }
+  .bar nav { display: flex; gap: 28px; align-items: center; font-size: 14px; }
+  .bar nav a { color: var(--muted); text-decoration: none; }
+  .bar nav a:hover { color: var(--ink); }
+  .avail { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* hero */
+  .hero { padding: 56px 0 72px; border-bottom: 1px solid var(--line); }
+  h1.name { font-size: clamp(64px, 9vw, 104px); line-height: 0.98; letter-spacing: -0.03em; }
+  .kicker { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 72px; margin-top: 44px; align-items: start; }
+  .lede { font-family: 'Fraunces', serif; font-size: 27px; line-height: 1.42; letter-spacing: -0.01em; max-width: 30ch; }
+  .lede em { font-style: normal; color: var(--accent); }
+  .intro { margin-top: 26px; font-size: 16px; line-height: 1.75; color: var(--ink-2); max-width: 46ch; }
+  .actions { margin-top: 32px; display: flex; gap: 16px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; font-size: 14px; text-decoration: none; }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.primary:hover { background: var(--accent); }
+  .btn.text { color: var(--ink); padding: 0; height: auto; border-bottom: 1px solid var(--line); border-radius: 0; }
+
+  /* now list */
+  .now { border: 1px solid var(--line); background: #fff; padding: 22px; }
+  .now h3 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 14px; }
+  .now ul { list-style: none; }
+  .now li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-2); display: flex; justify-content: space-between; gap: 12px; }
+  .now li:last-child { border-bottom: 0; }
+  .now li span:last-child { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; white-space: nowrap; }
+  .now li b { color: var(--ink); font-weight: 500; }
+
+  /* work */
+  .work { padding: 80px 0; }
+  .work-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .work-top h2 { font-family: 'Fraunces', serif; font-size: 40px; letter-spacing: -0.02em; }
+  .work-top span { font-size: 12px; color: var(--muted); }
+  .rule { height: 1px; background: var(--line); margin-bottom: 8px; }
+
+  .piece { display: grid; grid-template-columns: 100px 1fr; gap: 32px; padding: 44px 0; border-bottom: 1px solid var(--line); }
+  .piece .no { font-family: 'Fraunces', serif; font-size: 64px; line-height: 1; color: #d8d2c4; }
+  .piece h3 { font-family: 'Fraunces', serif; font-size: 33px; letter-spacing: -0.01em; line-height: 1.15; }
+  .piece h3 a { color: inherit; text-decoration: none; }
+  .piece h3 a:hover { color: var(--accent); }
+  .piece .kicker2 { margin-top: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .piece .story { margin-top: 18px; display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+  .piece p { font-size: 15.5px; line-height: 1.75; color: var(--ink-2); }
+  .piece blockquote { font-family: 'Fraunces', serif; font-size: 21px; line-height: 1.45; color: var(--ink); border-left: 2px solid var(--accent); padding-left: 18px; }
+  .piece .links { margin-top: 20px; display: flex; gap: 20px; font-size: 13.5px; }
+  .piece .links a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(29,92,58,.3); padding-bottom: 1px; }
+  .piece figure { margin-top: 24px; border: 1px solid var(--line); background: #fff; padding: 8px; }
+  .piece figure img { width: 100%; display: block; }
+
+  /* about strip */
+  .about { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
+  .about h2 { font-family: 'Fraunces', serif; font-size: 26px; }
+  .about p { font-size: 16px; line-height: 1.8; color: var(--ink-2); max-width: 62ch; }
+  .about p + p { margin-top: 14px; }
+
+  footer { padding: 40px 0 56px; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--muted); }
+  .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .foot .sig { font-family: 'Fraunces', serif; font-size: 20px; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark">Aziz Dhouib</div>
+    <nav>
+      <a href="#">Work</a>
+      <a href="#">About</a>
+      <a href="#">Résumé</a>
+      <span class="avail"><span class="dot"></span> Available for work</span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span>Data scientist · Full-stack developer</span>
+      <span class="mono">Portfolio, 2026</span>
+    </div>
+
+    <h1 class="name serif">Aziz<br />Dhouib</h1>
+
+    <div class="hero-grid">
+      <div>
+        <p class="lede serif">
+          I build systems that have to be <em>trusted</em> — solvers, trading agents
+          and analytics platforms where every number says where it came from.
+        </p>
+        <p class="intro">
+          Six years of turning research into software: aerodynamic simulation with real
+          CFD behind it, reinforcement learning on market data, and mobile apps that
+          put a person's own data back in their hands.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#">See selected work</a>
+          <a class="btn text" href="#">azizdhouib2002@gmail.com</a>
+        </div>
+      </div>
+
+      <aside class="now">
+        <h3>Now</h3>
+        <ul>
+          <li><span><b>Motorsport Aero Simulator</b><br />solver + wind tunnel</span><span>Nov 2026</span></li>
+          <li><span><b>FlyTrader</b><br />connectome RL research</span><span>Oct 2026</span></li>
+          <li><span><b>Open to</b><br />data science / full-stack roles</span><span>now</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="work">
+  <div class="wrap">
+    <div class="work-top">
+      <h2>Selected work</h2>
+      <span class="mono">03 of 13 · full index in résumé</span>
+    </div>
+    <div class="rule"></div>
+
+    <article class="piece">
+      <div class="no serif">01</div>
+      <div>
+        <h3><a href="#">Motorsport Aero Simulator</a></h3>
+        <div class="kicker2 mono">Python · FastAPI · OpenFOAM · Three.js · Optuna</div>
+
+        <div class="story">
+          <div>
+            <p>
+              A Formula open-wheel aerodynamics workbench with three force tiers behind
+              one interface: empirical, 3D vortex lattice, and a real RANS front-wing
+              section that writes its own body-fitted mesh and reports measured y+.
+            </p>
+            <p>
+              A Bayesian optimiser searches wing angles, ride heights and diffuser angle.
+              A validation ledger records every check against thin-airfoil theory —
+              whether it passes or not.
+            </p>
+            <div class="links">
+              <a href="#">Code</a>
+              <a href="#">Decision notes</a>
+            </div>
+            <figure>
+              <img src="../../public/assets/aero-smoke.png" alt="Volumetric smoke over the parametric car" />
+            </figure>
+          </div>
+          <blockquote>
+            "The point of this project is not the downforce numbers. It is that every
+            result carries a provenance label."
+          </blockquote>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="no serif">02</div>
+      <div>
+        <h3><a href="#">FlyTrader</a></h3>
+        <div class="kicker2 mono">PyTorch · Gymnasium · FastAPI · Three.js</div>
+
+        <div class="story">
+          <div>
+            <p>
+              A fruit-fly connectome used as a fixed spiking feature extractor for a
+              reinforcement-learning trader, with honest out-of-sample evaluation and
+              backtests against buy-and-hold, momentum and trend baselines.
+            </p>
+            <div class="links">
+              <a href="#">Code</a>
+              <a href="#">Live preview</a>
+            </div>
+            <figure>
+              <img src="../../public/assets/flytrader.png" alt="FlyTrader dashboard" />
+            </figure>
+          </div>
+          <blockquote>
+            "Trained on a time split, checkpointed on validation — never on the test set."
+          </blockquote>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <h2 class="serif">About</h2>
+    <div>
+      <p>
+        I'm Aziz, a data scientist and full-stack developer. I like problems where the
+        answer has to survive someone checking it: solver validation, honest backtests,
+        dashboards whose numbers reconcile.
+      </p>
+      <p>
+        Most of my work sits where research meets shipping — a FastAPI backend one day,
+        a Three.js wind tunnel the next, a React app the day after.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="sig serif">Aziz Dhouib</span>
+    <span class="mono">azizdhouib2002@gmail.com</span>
+    <a href="#">GitHub ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

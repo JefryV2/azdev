@@ -1,30 +1,164 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download, Mail, MapPin, Phone, SquareArrowOutUpRight } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Download,
+  Mail,
+  MapPin,
+  Phone,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="mb-4 border-b border-border pb-2 text-[15px] font-medium text-foreground">{children}</h3>
+const SectionHeading = ({
+  index,
+  title,
+  meta,
+}: {
+  index: string;
+  title: string;
+  meta?: string;
+}) => (
+  <div className="flex items-baseline justify-between gap-4 pt-10 pb-4 border-b border-border">
+    <div className="flex items-baseline gap-4">
+      <span className="font-mono text-[10.5px] text-muted-foreground">{index}</span>
+      <h2 className="text-[15px] font-medium tracking-tight text-foreground">{title}</h2>
+    </div>
+    {meta && (
+      <span className="font-mono text-[10.5px] text-muted-foreground shrink-0">{meta}</span>
+    )}
+  </div>
 );
+
+const experience = [
+  {
+    org: 'Independent',
+    role: 'Data Analyst & Business Intelligence Consultant',
+    period: '2022 — present',
+    place: 'Freelance · remote',
+    points: [
+      'Designed interactive BI dashboards in Looker and Power BI to track customer engagement, product adoption and business KPIs.',
+      'Built SQL-based ETL pipelines that ingest and transform data from multiple sources, improving data integrity and reporting accuracy.',
+      'Ran deep-dive analyses on clickstream data, user behaviour and retention metrics using Amplitude and Python.',
+      'Led data governance work — data dictionaries and standardised KPI definitions across teams.',
+    ],
+  },
+  {
+    org: 'Boston Consulting Group',
+    role: 'Data Science Job Simulation',
+    period: '2022 — 2024',
+    place: 'Remote',
+    points: [
+      'Built predictive models in Python to analyse business performance and improve forecasting accuracy.',
+      'Automated data pipelines with SQL and ETL processes, reducing data inconsistencies by 40%.',
+      'Ran exploratory analysis to surface trends and turn them into data-driven recommendations.',
+    ],
+  },
+  {
+    org: 'Accenture',
+    role: 'Data Analytics & Visualization Job Simulation',
+    period: '2022 — 2024',
+    place: 'Remote',
+    points: [
+      'Cleaned and modelled large datasets in Python and R, holding data quality and consistency.',
+      'Developed interactive Power BI and Tableau dashboards for real-time business decisions.',
+      'Worked with cross-functional teams on user engagement and customer retention insights.',
+    ],
+  },
+  {
+    org: 'KPM Group',
+    role: 'Data Analytics Consulting Internship',
+    period: '2022 — 2024',
+    place: 'Remote',
+    points: [
+      'Processed and analysed large-scale customer datasets with SQL and BI tools to track KPIs.',
+      'Produced Tableau and Power BI reports on customer behaviour, engagement trends and churn.',
+      'Implemented automated reporting pipelines, cutting manual reporting time by 30%.',
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: 'Motorsport Aero Simulator',
+    note: 'Three force tiers — empirical, vortex lattice, real RANS — behind one interface, with a validation ledger that records its own failures.',
+    stack: 'Python · FastAPI · OpenFOAM · Three.js · Optuna',
+    link: 'https://github.com/JefryV2/motorsport-aero-simulator',
+  },
+  {
+    title: 'FlyTrader',
+    note: 'Reinforcement-learning trader using a simulated fruit-fly connectome as a spiking feature extractor, with honest out-of-sample backtests and seed intervals.',
+    stack: 'Python · PyTorch · Gymnasium · FastAPI · Three.js',
+    link: 'https://github.com/JefryV2/fly-trader',
+  },
+  {
+    title: 'Trinity Life Optimizer',
+    note: 'Mobile-first dashboard unifying health, wealth and relationships into one data model, with stress modelling and time-series insights.',
+    stack: 'React · TypeScript · Supabase · Recharts',
+    link: 'https://trinity-life-optimizer.vercel.app/',
+  },
+  {
+    title: 'Ruvopp',
+    note: 'Cross-platform news app with algorithm-driven curation, real-time updates and engagement tracking.',
+    stack: 'React Native · Expo · TypeScript · Supabase',
+    link: 'https://ruvo-news-app.vercel.app/',
+  },
+  {
+    title: 'Debate Guardian',
+    note: 'Real-time fact-checking for debates: claim detection, credibility scoring and fallacy analysis.',
+    stack: 'React · Google Cloud Speech-to-Text · Gemini API · Node.js',
+    link: 'https://debate-guardian.vercel.app/',
+  },
+  {
+    title: 'Ethical Checker',
+    note: 'Scores influencer and brand collaborations on transparency, sentiment and engagement.',
+    stack: 'React · Supabase · OpenAI API · Tailwind',
+    link: 'https://ethical-searcher.vercel.app/',
+  },
+  {
+    title: 'RewardMax',
+    note: 'Credit-card rewards optimiser that models category bonuses and recommends the best card per purchase.',
+    stack: 'React · TypeScript · Netlify',
+    link: 'https://rewardmax.netlify.app/welcome/',
+  },
+];
+
+const skills = [
+  {
+    group: 'Frontend',
+    items: 'React, React Native, TypeScript, Vite, Tailwind CSS, shadcn/ui, Streamlit, UI/UX',
+  },
+  {
+    group: 'Backend & data',
+    items: 'Node.js, Express, Supabase, PostgreSQL, SQLite, REST, GraphQL, Firebase',
+  },
+  {
+    group: 'AI & modelling',
+    items: 'Python, Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, NLP, OpenAI, Gemini',
+  },
+  {
+    group: 'BI & visualisation',
+    items: 'Power BI, Tableau, Plotly, Seaborn, Chart.js, Recharts, real-time dashboards',
+  },
+  {
+    group: 'Cloud & delivery',
+    items: 'AWS, Azure, Docker, Git, GitHub Actions, CI/CD, ETL pipelines, automation',
+  },
+];
 
 const Resume = () => {
   const handleDownloadPDF = () => {
-    // Hide navbar and footer for printing
     const navbar = document.querySelector('header');
     const footer = document.querySelector('footer');
     const backButton = document.querySelector('.back-button-container');
-    
+
     if (navbar) navbar.style.display = 'none';
     if (footer) footer.style.display = 'none';
     if (backButton) (backButton as HTMLElement).style.display = 'none';
-    
-    // Trigger print dialog
+
     window.print();
-    
-    // Restore navbar and footer after a delay
+
     setTimeout(() => {
       if (navbar) navbar.style.display = '';
       if (footer) footer.style.display = '';
@@ -33,270 +167,222 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background antialiased">
+    <div className="resume-page min-h-screen bg-background text-foreground antialiased">
       <Navbar />
-      
-      <div className="container mx-auto px-4 pt-24 pb-16">
-        <div className="flex justify-between items-center mb-8 back-button-container">
-          <Link to="/">
-            <Button variant="outline" className="gap-2">
-              <ArrowLeft size={18} /> Back to home
-            </Button>
-          </Link>
-          
-          <Button className="gap-2" onClick={handleDownloadPDF}>
-            <Download size={18} /> Download PDF
-          </Button>
-        </div>
-        
-        <div className="bg-card rounded-lg border shadow-sm p-6 md:p-8 max-w-4xl mx-auto resume-content">
-          <header className="mb-8 text-center">
-            <h1 className="mb-2 text-3xl font-medium tracking-tight md:text-4xl">Aziz Dhouib</h1>
-            <h2 className="mb-4 text-lg text-muted-foreground">
-              Data Scientist &amp; Full‑Stack Developer
-            </h2>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-secondary-foreground">
+      <main className="container mx-auto px-6 pt-24 pb-24">
+        <div className="back-button-container flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors duration-150"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            back
+          </Link>
+
+          <button
+            onClick={handleDownloadPDF}
+            className="inline-flex items-center gap-2 h-9 px-4 rounded-lg border border-border bg-secondary text-secondary-foreground text-[13px] hover:bg-secondary/70 transition-colors duration-150"
+          >
+            <Download className="h-4 w-4 text-muted-foreground" />
+            Download PDF
+          </button>
+        </div>
+
+        <div className="resume-content max-w-4xl mx-auto">
+          {/* Masthead */}
+          <div className="pt-12">
+            <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+              curriculum vitae · 2026
+            </p>
+            <h1 className="mt-4 text-4xl md:text-5xl font-medium tracking-tight leading-[1.02] text-foreground">
+              Aziz Dhouib
+            </h1>
+            <p className="mt-3 text-lg text-secondary-foreground tracking-tight">
+              Data scientist · full-stack developer
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11.5px] text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <MapPin size={16} className="text-muted-foreground" /> Tunisia
+                <MapPin className="h-3.5 w-3.5" /> Tunisia
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Mail size={16} className="text-muted-foreground" /> azizdhouib2002@gmail.com
-              </span>
+              <a
+                href="mailto:azizdhouib2002@gmail.com"
+                className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors duration-150"
+              >
+                <Mail className="h-3.5 w-3.5" /> azizdhouib2002@gmail.com
+              </a>
               <span className="inline-flex items-center gap-1.5 tabular-nums">
-                <Phone size={16} className="text-muted-foreground" /> +216 24 725 227
+                <Phone className="h-3.5 w-3.5" /> +216 24 725 227
               </span>
               <a
                 href="https://github.com/JefryV2"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-foreground"
+                className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors duration-150"
               >
-                <SquareArrowOutUpRight size={16} className="text-muted-foreground" />
-                github.com/JefryV2
+                <ArrowUpRight className="h-3.5 w-3.5" /> github.com/JefryV2
               </a>
             </div>
-          </header>
-          
-          <section className="mb-8">
-            <SectionTitle>Summary</SectionTitle>
-            <p className="text-muted-foreground">
-              Data Scientist &amp; Full‑Stack Developer with expertise in AI‑driven applications, business intelligence, 
-              and end‑to‑end product development. I build modern web and mobile experiences using React, TypeScript, 
-              Supabase, and Python, and I design analytics systems that turn complex data into clear, actionable insights. 
-              Comfortable owning the full lifecycle from data modeling and ETL to API design, UI/UX, and deployment.
+          </div>
+
+          {/* Summary */}
+          <section className="pt-4">
+            <SectionHeading index="01" title="Summary" />
+            <p className="pt-5 text-[15px] leading-7 text-secondary-foreground max-w-[70ch]">
+              I build systems that have to survive scrutiny: aerodynamic solvers,
+              trading agents and analytics platforms. Python for modelling and
+              backends, TypeScript and React for the interface, and a provenance
+              label on every number. Comfortable owning the full lifecycle — data
+              modelling and ETL, API design, UI, deployment.
             </p>
           </section>
-          
-          <section className="mb-8">
-            <SectionTitle>Experience</SectionTitle>
-            
-            <div className="space-y-6">
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-medium">Data Analyst & Business Intelligence Consultant</h4>
-                  <span className="text-sm text-muted-foreground tabular-nums">2022 – Present</span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Freelance & Independent Projects, Remote</p>
-                <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li>Designed interactive BI dashboards in Looker and Power BI to track customer engagement, product adoption, and business KPIs.</li>
-                  <li>Developed SQL-based ETL pipelines to ingest and transform data from multiple sources, improving data integrity and reporting accuracy.</li>
-                  <li>Conducted deep-dive analyses on clickstream data, user behaviors, and retention metrics using Amplitude and Python.</li>
-                  <li>Led data governance initiatives, creating data dictionaries and standardizing KPI definitions across teams.</li>
-                  <li>Worked closely with engineers and product managers to align customer data insights with strategic decision-making.</li>
-                </ul>
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-medium">Boston Consulting Group – Data Science Job Simulation</h4>
-                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Remote</p>
-                <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li>Built predictive models in Python to analyze business performance and improve forecasting accuracy.</li>
-                  <li>Automated data pipelines using SQL and ETL processes, reducing data inconsistencies by 40%.</li>
-                  <li>Conducted exploratory data analysis (EDA) to uncover trends, providing data-driven recommendations.</li>
-                </ul>
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-medium">Accenture – Data Analytics & Visualization Job Simulation</h4>
-                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Remote</p>
-                <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li>Cleaned and modeled large datasets in Python and R, ensuring data quality and consistency.</li>
-                  <li>Developed interactive dashboards in Power BI and Tableau to support real-time business decision-making.</li>
-                  <li>Collaborated with cross-functional teams to deliver insights on user engagement and customer retention.</li>
-                </ul>
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-medium">KPM Group – Data Analytics Consulting Internship</h4>
-                  <span className="text-sm text-muted-foreground tabular-nums">2022 – 2024</span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Remote</p>
-                <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li>Processed and analyzed large-scale customer datasets using SQL and BI tools to track key performance indicators (KPIs).</li>
-                  <li>Developed Tableau & Power BI reports to present insights on customer behavior, engagement trends, and churn analysis.</li>
-                  <li>Implemented automated reporting pipelines, reducing manual reporting time by 30%.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-          
-          <section className="mb-8">
-            <SectionTitle>Projects</SectionTitle>
-            
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium">FlyTrader – Connectome-Inspired RL Trading Research</h4>
-                <p className="text-sm">
-                  Reinforcement-learning stock trader that uses a simulated fruit-fly connectome as a spiking feature extractor,
-                  with honest out-of-sample backtests, seed intervals, and a FastAPI + Three.js dashboard for live evaluation
-                  and multi-asset portfolio allocation.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> Python, PyTorch, Gymnasium, FastAPI, Three.js, FlyWire connectome, reinforcement learning.
-                </p>
-              </div>
 
-              <div>
-                <h4 className="font-medium">Trinity Life Optimizer – Personal Analytics App</h4>
-                <p className="text-sm">
-                  Mobile‑first life dashboard that unifies health, wealth, and relationships into interactive cards and analytics,
-                  including stress modeling, correlations, and time‑series insights.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Vite, Tailwind CSS, Supabase, Recharts, shadcn/ui, Capacitor.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-medium">Ruvopp – Personalized News & Insights App</h4>
-                <p className="text-sm">
-                  Cross‑platform mobile app that curates a personalized news feed with real‑time updates, engagement tracking,
-                  and Supabase‑backed content preferences.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> React Native, Expo, TypeScript, Supabase, REST APIs.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-medium">Debate Guardian – AI &amp; Speech Recognition Tool</h4>
-                <p className="text-sm">
-                  Real‑time fact‑checking platform that listens to debates, detects claims, and evaluates them with AI, providing
-                  credibility scores, fallacy detection, and visual analytics.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Google Cloud Speech‑to‑Text, Gemini API, Node.js, Chart.js, TensorFlow.js.
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="font-medium">Ethical Checker for Social Media Influencers &amp; Brands</h4>
-                <p className="text-sm">
-                  Platform that scores influencer/brand collaborations based on transparency, sentiment, and engagement to help
-                  brands make ethical partnership decisions.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> React, TypeScript, Supabase, OpenAI API, Tailwind CSS.
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="font-medium">Job Application Automation Tool</h4>
-                <p className="text-sm">
-                  Automation system that scrapes job postings, analyzes them with NLP, and matches them to candidate resumes to
-                  prioritize the best‑fit opportunities.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> Streamlit, Python, BeautifulSoup, OpenAI GPT, SQLite.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-medium">Market Analysis &amp; Trading Assistant</h4>
-                <p className="text-sm">
-                  Interactive trading dashboard that tracks stock movements, user trading behavior, and AI‑driven entry/exit
-                  recommendations with risk‑aware analytics.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> Streamlit, Python, Pandas, Machine Learning, Yahoo Finance API, Power BI, Tableau.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-medium">RewardMax – Credit Card Rewards Optimizer</h4>
-                <p className="text-sm">
-                  Web application that helps users maximize credit card rewards by tracking spending across cards, modeling category
-                  bonuses, and recommending the best card to use at checkout. Includes interactive previews of recommendations,
-                  quarterly bonus alerts, and challenge‑based gamification to nudge better habits.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium">Tech Stack:</span> Modern React &amp; TypeScript single‑page application, Tailwind‑style UI, deployed on Netlify.
-                </p>
-              </div>
-            </div>
-          </section>
-          
-          <section className="mb-8">
-            <SectionTitle>Technical Skills</SectionTitle>
-            
-            <div className="space-y-2 text-sm">
-              <p>
-                <span className="font-medium">Frontend:</span> React, React Native, TypeScript, Vite, Tailwind CSS, shadcn/ui, Streamlit, Responsive Design, UI/UX.
-              </p>
-              <p>
-                <span className="font-medium">Backend &amp; Databases:</span> Node.js, Express, Supabase, PostgreSQL, SQLite, RESTful APIs, GraphQL, Firebase.
-              </p>
-              <p>
-                <span className="font-medium">AI &amp; Data Science:</span> Python, Pandas, NumPy, Scikit‑learn, TensorFlow, NLP, OpenAI API, Gemini API, Machine Learning, Data Analysis.
-              </p>
-              <p>
-                <span className="font-medium">Data Visualization &amp; BI:</span> Power BI, Tableau, Plotly, Seaborn, Chart.js, Recharts, Data Dashboards, Real‑time Analytics.
-              </p>
-              <p>
-                <span className="font-medium">Cloud, DevOps &amp; Tooling:</span> Supabase, AWS, Azure, Docker, Git, GitHub Actions, CI/CD, ETL Pipelines, Automation.
-              </p>
-            </div>
-          </section>
-          
-          <section className="mb-8">
-            <SectionTitle>Education</SectionTitle>
-            <p className="text-sm">Bachelor of Science in Computer Science (University of the People, Remote – Present)</p>
-          </section>
-          
-          <section className="mb-8">
-            <SectionTitle>Certifications</SectionTitle>
-            <p className="text-sm">IBM Data Analytics with Excel and R – Coursera</p>
-            <p className="text-sm">IBM Data Analysis and Visualization Foundations – Coursera</p>
-          </section>
-          
+          {/* Experience */}
           <section>
-            <SectionTitle>Languages</SectionTitle>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <SectionHeading index="02" title="Experience" meta="2022 — present" />
+            <div>
+              {experience.map((job) => (
+                <article
+                  key={job.org}
+                  className="grid md:grid-cols-[210px_1fr] gap-2 md:gap-10 py-6 border-b border-border/70 last:border-b-0"
+                >
+                  <div>
+                    <h3 className="text-[15px] font-medium tracking-tight text-foreground">
+                      {job.org}
+                    </h3>
+                    <p className="mt-1.5 font-mono text-[11px] leading-5 text-secondary-foreground">
+                      {job.role}
+                    </p>
+                    <p className="mt-1 font-mono text-[10.5px] text-github-accent">
+                      {job.period}
+                    </p>
+                    <p className="font-mono text-[10.5px] text-muted-foreground">
+                      {job.place}
+                    </p>
+                  </div>
+                  <ul className="space-y-2">
+                    {job.points.map((point) => (
+                      <li
+                        key={point.slice(0, 24)}
+                        className="text-[13.5px] leading-6 text-secondary-foreground flex gap-3"
+                      >
+                        <span className="mt-2.5 h-px w-3 shrink-0 bg-border" aria-hidden />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {/* Selected projects */}
+          <section>
+            <SectionHeading index="03" title="Selected projects" meta="07 of 12" />
+            <div>
+              {projects.map((project) => (
+                <article
+                  key={project.title}
+                  className="grid md:grid-cols-[210px_1fr] gap-2 md:gap-10 py-5 border-b border-border/70 last:border-b-0"
+                >
+                  <h3 className="text-[14px] font-medium text-foreground">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-start gap-1 hover:text-github-accent transition-colors duration-150"
+                    >
+                      {project.title}
+                      <ArrowUpRight className="h-3 w-3 mt-1 shrink-0 text-muted-foreground" />
+                    </a>
+                  </h3>
+                  <div>
+                    <p className="text-[13.5px] leading-6 text-secondary-foreground">
+                      {project.note}
+                    </p>
+                    <p className="mt-1.5 font-mono text-[10.5px] text-muted-foreground">
+                      {project.stack}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {/* Skills */}
+          <section>
+            <SectionHeading index="04" title="Technical skills" />
+            <div className="pt-5 space-y-3">
+              {skills.map((skill) => (
+                <div
+                  key={skill.group}
+                  className="grid sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-2.5 border-b border-border/60 last:border-b-0"
+                >
+                  <p className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-muted-foreground">
+                    {skill.group}
+                  </p>
+                  <p className="text-[13.5px] leading-6 text-secondary-foreground">
+                    {skill.items}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Education & certification */}
+          <section>
+            <SectionHeading index="05" title="Education & certification" />
+            <div className="pt-5 grid sm:grid-cols-2 gap-x-10 gap-y-6">
               <div>
-                <p className="font-medium">English</p>
-                <p className="text-muted-foreground">Proficient</p>
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-muted-foreground">
+                  education
+                </p>
+                <p className="mt-2 text-[14px] text-foreground">
+                  BSc Computer Science
+                </p>
+                <p className="mt-1 text-[13px] text-muted-foreground">
+                  University of the People · remote · present
+                </p>
               </div>
               <div>
-                <p className="font-medium">French</p>
-                <p className="text-muted-foreground">Proficient</p>
-              </div>
-              <div>
-                <p className="font-medium">Arabic</p>
-                <p className="text-muted-foreground">Native</p>
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-muted-foreground">
+                  certification
+                </p>
+                <ul className="mt-2 space-y-1 text-[13px] text-secondary-foreground">
+                  <li>IBM Data Analytics with Excel and R — Coursera</li>
+                  <li>IBM Data Analysis and Visualization Foundations — Coursera</li>
+                </ul>
               </div>
             </div>
           </section>
+
+          {/* Languages */}
+          <section>
+            <SectionHeading index="06" title="Languages" />
+            <div className="pt-5 grid grid-cols-3 gap-6">
+              {[
+                ['English', 'proficient'],
+                ['French', 'proficient'],
+                ['Arabic', 'native'],
+              ].map(([language, level]) => (
+                <div key={language}>
+                  <p className="text-[14px] text-foreground">{language}</p>
+                  <p className="font-mono text-[10.5px] text-muted-foreground mt-0.5">
+                    {level}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="mt-14 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-3 font-mono text-[10.5px] text-muted-foreground">
+            <span>azizdhouib2002@gmail.com</span>
+            <span>Tunisia · +216 24 725 227</span>
+          </div>
         </div>
-      </div>
-      
+      </main>
+
       <Footer />
     </div>
   );

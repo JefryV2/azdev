@@ -7,8 +7,9 @@ import { toast } from '@/components/ui/use-toast';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const quickLinks = [
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
+  { name: 'Background', href: '#about' },
+  { name: 'Work', href: '#work' },
+  { name: 'Index', href: '#index' },
   { name: 'Contact', href: '#contact' }
 ];
 

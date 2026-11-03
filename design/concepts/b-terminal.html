@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concept B — The terminal desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090d;
+    --panel: #0d1016;
+    --raised: #12161f;
+    --text: #e9ebf1;
+    --text-2: #a7adbb;
+    --muted: #6d7585;
+    --line: #1b2029;
+    --green: #3fb950;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(7,9,13,.92); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 56px; font-size: 13px; }
+  .brand { font-weight: 500; letter-spacing: -0.01em; font-size: 15px; }
+  .bar nav { display: flex; gap: 22px; align-items: center; }
+  .bar nav a { color: var(--text-2); text-decoration: none; }
+  .bar nav a:hover { color: var(--text); }
+  .idx { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-right: 6px; }
+  .status { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 72px; align-items: start; }
+  .overline { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); margin-bottom: 22px; }
+  h1 { font-size: 44px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.12; }
+  .sub { margin-top: 18px; font-size: 16px; color: var(--text-2); max-width: 48ch; line-height: 1.65; }
+  .actions { margin-top: 30px; display: flex; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 6px; font-size: 13.5px; text-decoration: none; }
+  .btn.primary { background: var(--text); color: #0b0d12; font-weight: 500; }
+  .btn.primary:hover { background: #fff; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--text-2); }
+  .btn.ghost:hover { border-color: #2a3140; color: var(--text); }
+
+  /* readout panel */
+  .panel { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; overflow: hidden; }
+  .panel-head { display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .panel-body { padding: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .prompt { color: var(--muted); margin-bottom: 12px; }
+  .prompt b { color: var(--text); font-weight: 500; }
+  .row { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px dashed #1a1f28; font-size: 11.5px; }
+  .row:last-child { border-bottom: 0; }
+  .row span:first-child { color: var(--muted); }
+  .row span:last-child { color: var(--text-2); text-align: right; }
+  .row .ok { color: var(--green); }
+
+  /* latest strip */
+  .latest { display: grid; grid-template-columns: 300px 1fr; gap: 0; border-bottom: 1px solid var(--line); }
+  .latest-img { border-right: 1px solid var(--line); position: relative; overflow: hidden; min-height: 200px; }
+  .latest-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .latest-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; }
+  .latest-body .tag { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--green); margin-bottom: 8px; }
+  .latest-body h2 { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+  .latest-body p { margin-top: 8px; font-size: 14px; color: var(--text-2); max-width: 62ch; line-height: 1.6; }
+  .latest-body .links { margin-top: 14px; display: flex; gap: 16px; font-size: 13px; }
+  .latest-body .links a { color: var(--text); text-decoration: none; border-bottom: 1px solid #2b3340; padding-bottom: 1px; }
+
+  /* index table */
+  .work { padding: 56px 0 64px; }
+  .work-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+  .work-head h2 { font-size: 15px; font-weight: 500; }
+  .work-head span { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 0 12px 10px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--line); color: var(--text-2); vertical-align: middle; }
+  td.name { color: var(--text); font-weight: 500; }
+  td.name a { color: inherit; text-decoration: none; }
+  tr:hover td { background: var(--raised); }
+  td.num, td.year { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--muted); }
+  .stack { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .tag-shipped { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); border: 1px solid rgba(63,185,80,.3); padding: 2px 6px; border-radius: 3px; }
+  .tag-arch { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); border: 1px solid var(--line); padding: 2px 6px; border-radius: 3px; }
+  .links a { color: var(--text-2); text-decoration: none; margin-right: 12px; }
+  .links a:hover { color: var(--text); }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .foot a { color: var(--text-2); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">Aziz Dhouib</div>
+    <nav>
+      <a href="#"><span class="idx">01</span>Work</a>
+      <a href="#"><span class="idx">02</span>About</a>
+      <a href="#"><span class="idx">03</span>Résumé</a>
+      <span class="status"><span class="dot"></span> open to work</span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="overline">// data science + engineering</p>
+      <h1>Simulation, markets and analytics — built to be checked.</h1>
+      <p class="sub">
+        Data scientist and full-stack developer. I work on systems where the numbers
+        have to survive scrutiny: aerodynamic solvers, trading agents, analytics
+        platforms. Python backend, React front, honest labels on every result.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#">Browse the index</a>
+        <a class="btn ghost" href="#">Contact</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><span>system.readout</span><span>v2026.11</span></div>
+      <div class="panel-body">
+        <p class="prompt"><b>$</b> whoami --long</p>
+        <div class="row"><span>focus</span><span>simulation · markets · analytics</span></div>
+        <div class="row"><span>stack</span><span>python · typescript · react</span></div>
+        <div class="row"><span>latest</span><span>motorsport-aero-simulator</span></div>
+        <div class="row"><span>repos</span><span>10 public</span></div>
+        <div class="row"><span>validation</span><span class="ok">failures recorded</span></div>
+        <div class="row"><span>status</span><span class="ok">● open to work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="latest">
+  <div class="latest-img">
+    <img src="../../public/assets/aero-smoke.png" alt="Recent work: volumetric smoke over the parametric car" />
+  </div>
+  <div class="latest-body">
+    <div class="tag">Latest — 2026-11-02</div>
+    <h2>Motorsport Aero Simulator</h2>
+    <p>
+      Three force tiers, one interface. The CFD tier writes its own body-fitted O-grid
+      and reports measured y+. A solver failure returns HTTP 503 instead of pretending.
+    </p>
+    <div class="links">
+      <a href="#">Code ↗</a>
+      <a href="#">Read the validation ledger →</a>
+    </div>
+  </div>
+</div>
+
+<section class="work">
+  <div class="wrap">
+    <div class="work-head">
+      <h2>Index</h2>
+      <span>10 entries · sort: updated</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:36px">#</th>
+          <th>Project</th>
+          <th>Domain</th>
+          <th>Stack</th>
+          <th style="width:64px">Year</th>
+          <th style="width:84px">State</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">01</td>
+          <td class="name"><a href="#">Motorsport Aero Simulator</a></td>
+          <td>Aerodynamics</td>
+          <td class="stack">python · openfoam · three.js</td>
+          <td class="year">2026</td>
+          <td><span class="tag-shipped">active</span></td>
+          <td class="links"><a href="#">code</a></td>
+        </tr>
+        <tr>
+          <td class="num">02</td>
+          <td class="name"><a href="#">FlyTrader</a></td>
+          <td>RL · markets</td>
+          <td class="stack">pytorch · gymnasium · fastapi</td>
+          <td class="year">2026</td>
+          <td><span class="tag-shipped">active</span></td>
+          <td class="links"><a href="#">code</a><a href="#">demo</a></td>
+        </tr>
+        <tr>
+          <td class="num">03</td>
+          <td class="name"><a href="#">Trinity Life Optimizer</a></td>
+          <td>Analytics</td>
+          <td class="stack">react · supabase · recharts</td>
+          <td class="year">2025</td>
+          <td><span class="tag-shipped">live</span></td>
+          <td class="links"><a href="#">demo</a></td>
+        </tr>
+        <tr>
+          <td class="num">04</td>
+          <td class="name"><a href="#">Ruvopp</a></td>
+          <td>Mobile</td>
+          <td class="stack">react native · expo · supabase</td>
+          <td class="year">2025</td>
+          <td><span class="tag-shipped">live</span></td>
+          <td class="links"><a href="#">demo</a></td>
+        </tr>
+        <tr>
+          <td class="num">05</td>
+          <td class="name"><a href="#">RewardMax</a></td>
+          <td>Fintech</td>
+          <td class="stack">react · typescript</td>
+          <td class="year">2025</td>
+          <td><span class="tag-shipped">live</span></td>
+          <td class="links"><a href="#">demo</a></td>
+        </tr>
+        <tr>
+          <td class="num">06</td>
+          <td class="name"><a href="#">Debate Guardian</a></td>
+          <td>AI · speech</td>
+          <td class="stack">react · gemini · node</td>
+          <td class="year">2025</td>
+          <td><span class="tag-arch">archived</span></td>
+          <td class="links"><a href="#">code</a></td>
+        </tr>
+        <tr>
+          <td class="num">07</td>
+          <td class="name"><a href="#">Ethical Checker</a></td>
+          <td>NLP</td>
+          <td class="stack">react · supabase · openai</td>
+          <td class="year">2025</td>
+          <td><span class="tag-shipped">live</span></td>
+          <td class="links"><a href="#">demo</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>azizdhouib2002@gmail.com</span>
+    <a href="#">github.com/JefryV2 ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

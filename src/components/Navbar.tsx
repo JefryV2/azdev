@@ -5,8 +5,9 @@ import { MenuIcon, XIcon, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
+  { name: 'Background', href: '#about' },
+  { name: 'Work', href: '#work' },
+  { name: 'Index', href: '#index' },
   { name: 'Contact', href: '#contact' }
 ];
 

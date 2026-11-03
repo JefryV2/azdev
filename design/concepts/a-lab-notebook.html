@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concept A — The lab notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f3f0e8;
+    --paper-raised: #faf8f2;
+    --ink: #17150f;
+    --ink-2: #4b4740;
+    --muted: #6f6a5f;
+    --hairline: rgba(23, 21, 15, 0.16);
+    --green: #1c5c3a;
+    --green-soft: rgba(28, 92, 58, 0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* top bar */
+  header { border-bottom: 1px solid var(--hairline); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { font-family: 'Instrument Serif', serif; font-size: 24px; letter-spacing: -0.01em; }
+  .bar nav { display: flex; gap: 28px; align-items: center; }
+  .bar nav a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+  .bar nav a:hover { color: var(--ink); }
+  .status { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+  /* hero */
+  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--hairline); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 72px; align-items: end; }
+  .overline { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+  h1 { font-size: 68px; line-height: 1.02; letter-spacing: -0.02em; max-width: 15ch; }
+  h1 em { font-style: italic; color: var(--green); }
+  .thesis { margin-top: 28px; font-size: 19px; line-height: 1.6; color: var(--ink-2); max-width: 46ch; }
+  .actions { margin-top: 36px; display: flex; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; height: 46px; padding: 0 22px; font-size: 14px; text-decoration: none; border-radius: 2px; }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--green); }
+  .btn.ghost { border: 1px solid var(--hairline); color: var(--ink); }
+  .btn.ghost:hover { background: var(--paper-raised); }
+
+  /* ledger card — the moment */
+  .ledger { border: 1px solid var(--hairline); background: var(--paper-raised); }
+  .ledger-head { display: flex; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--hairline); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .ledger-body { padding: 18px; }
+  .ledger-cap { font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { text-align: left; font-weight: 500; color: var(--muted); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 0 10px; border-bottom: 1px solid var(--hairline); }
+  td { padding: 10px 0; border-bottom: 1px solid var(--hairline); font-family: 'IBM Plex Mono', monospace; }
+  tr:last-child td { border-bottom: 0; }
+  td.pass { color: var(--green); }
+  .ledger-foot { padding: 14px 18px; border-top: 1px solid var(--hairline); font-size: 11px; color: var(--muted); }
+
+  /* work */
+  .work { padding: 72px 0; }
+  .work-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .work-head h2 { font-size: 34px; letter-spacing: -0.01em; }
+  .work-head span { font-size: 12px; color: var(--muted); }
+  .rule { height: 1px; background: var(--hairline); margin: 24px 0 0; }
+
+  .entry { display: grid; grid-template-columns: 64px 1fr 380px; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--hairline); align-items: start; }
+  .num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); padding-top: 6px; }
+  .entry h3 { font-size: 30px; letter-spacing: -0.01em; line-height: 1.15; }
+  .entry h3 a { color: inherit; text-decoration: none; }
+  .entry h3 a:hover { color: var(--green); }
+  .meta { margin-top: 10px; font-size: 11.5px; color: var(--muted); }
+  .entry p { margin-top: 14px; font-size: 15px; line-height: 1.65; color: var(--ink-2); max-width: 52ch; }
+  .entry-links { margin-top: 16px; display: flex; gap: 18px; font-size: 13px; }
+  .entry-links a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(28,92,58,.3); padding-bottom: 1px; }
+  figure { border: 1px solid var(--hairline); background: var(--paper-raised); padding: 10px; }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 11px; line-height: 1.5; color: var(--muted); padding: 10px 2px 2px; }
+
+  footer { border-top: 1px solid var(--hairline); padding: 32px 0; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+  .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">Aziz Dhouib</div>
+    <nav>
+      <a href="#">Work</a>
+      <a href="#">Notes</a>
+      <a href="#">Résumé</a>
+      <span class="status"><span class="dot"></span> Open to work</span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="overline">Portfolio — data science &amp; engineering</p>
+      <h1 class="serif">I build systems that <em>measure themselves.</em></h1>
+      <p class="thesis">
+        Aziz Dhouib — data scientist and full-stack developer. Simulation, markets and
+        analytics: every result labelled with what produced it, every validation check
+        recorded whether it passes or not.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#">Read the work</a>
+        <a class="btn ghost" href="#">Email me</a>
+      </div>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head mono">
+        <span>validation ledger</span>
+        <span>motorsport-aero-simulator</span>
+      </div>
+      <div class="ledger-body">
+        <p class="ledger-cap">Each check is a runnable script that prints measured values and its own verdict.</p>
+        <table>
+          <thead>
+            <tr><th>Check</th><th>Measures</th><th style="text-align:right">Verdict</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>V1</td><td>lift-curve slope</td><td class="pass" style="text-align:right">pass</td></tr>
+            <tr><td>V2</td><td>ground effect</td><td class="pass" style="text-align:right">pass</td></tr>
+            <tr><td>V3</td><td>RANS y+ target</td><td class="pass" style="text-align:right">pass</td></tr>
+            <tr><td>V4</td><td>optimizer convergence</td><td class="pass" style="text-align:right">pass</td></tr>
+            <tr><td>V5</td><td>drag budget</td><td style="text-align:right; color:#8a4b1f">recorded</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ledger-foot mono">status as of 2026-11-02 · docs/STATUS.md</div>
+    </div>
+  </div>
+</section>
+
+<section class="work">
+  <div class="wrap">
+    <div class="work-head">
+      <h2 class="serif">Selected work</h2>
+      <span class="mono">03 entries · 2025–2026</span>
+    </div>
+    <div class="rule"></div>
+
+    <article class="entry">
+      <div class="num">01</div>
+      <div>
+        <h3><a href="#">Motorsport Aero Simulator</a></h3>
+        <div class="meta mono">Python · FastAPI · OpenFOAM · Three.js · Optuna</div>
+        <p>
+          Three force tiers — empirical, vortex lattice, real RANS — behind one interface.
+          A solver failure returns an error instead of substituting synthetic numbers.
+          The point is not the downforce numbers; it is provenance.
+        </p>
+        <div class="entry-links">
+          <a href="#">Code</a>
+          <a href="#">Read the decisions</a>
+        </div>
+      </div>
+      <figure>
+        <img src="../../public/assets/aero-smoke.png" alt="Volumetric smoke over the parametric car" />
+        <figcaption>Figure 1 — volumetric smoke over the parametric car. Analytic potential flow, not a CFD result, and the panel says so.</figcaption>
+      </figure>
+    </article>
+
+    <article class="entry">
+      <div class="num">02</div>
+      <div>
+        <h3><a href="#">FlyTrader</a></h3>
+        <div class="meta mono">Python · PyTorch · Gymnasium · FastAPI · Three.js</div>
+        <p>
+          A fruit-fly connectome wired as a fixed feature extractor for an RL trader.
+          Time-split training, validation checkpointing, and backtests against
+          buy-and-hold, momentum and trend baselines.
+        </p>
+        <div class="entry-links">
+          <a href="#">Code</a>
+          <a href="#">Live preview</a>
+        </div>
+      </div>
+      <figure>
+        <img src="../../public/assets/flytrader.png" alt="FlyTrader dashboard" />
+        <figcaption>Figure 2 — research dashboard. Steps, trains and evaluates the agent against three baselines.</figcaption>
+      </figure>
+    </article>
+
+    <article class="entry">
+      <div class="num">03</div>
+      <div>
+        <h3><a href="#">Trinity Life Optimizer</a></h3>
+        <div class="meta mono">React · TypeScript · Supabase · Recharts</div>
+        <p>
+          A mobile-first analytics app that unifies health, wealth and relationships.
+          Built as a real companion and as a data-storytelling study in one.
+        </p>
+        <div class="entry-links">
+          <a href="#">Live demo</a>
+        </div>
+      </div>
+      <figure>
+        <img src="../../public/assets/trinity-dashboard.png" alt="Trinity dashboard" />
+        <figcaption>Figure 3 — the same data model powers the app and the Insights Lab.</figcaption>
+      </figure>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">azizdhouib2002@gmail.com</span>
+    <a href="#">GitHub ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
