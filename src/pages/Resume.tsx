@@ -118,8 +118,8 @@ const projects = [
   },
   {
     title: 'Ethical Checker',
-    note: 'Scores influencer and brand collaborations on transparency, sentiment and engagement.',
-    stack: 'React · Supabase · OpenAI API · Tailwind',
+    note: 'Keyless public-record reader for companies and creators: every claim linked, an evidence-coverage score instead of a verdict, and two on-device ONNX models — MiniLM retrieval over the scraped passages, MobileBERT entailment for transparency — with a live model lab that reports its own accuracy and failures.',
+    stack: 'React · TypeScript · Vite · Transformers.js · ONNX',
     link: 'https://ethical-searcher.vercel.app/',
   },
   {
@@ -141,7 +141,7 @@ const skills = [
   },
   {
     group: 'AI & modelling',
-    items: 'Python, Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, NLP, OpenAI, Gemini',
+    items: 'Python, Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, NLP, Transformers.js (ONNX), OpenAI, Gemini',
   },
   {
     group: 'BI & visualisation',

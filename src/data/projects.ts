@@ -38,6 +38,24 @@ export const projects: Project[] = [
     codeUrl: 'https://github.com/JefryV2/bi-mvp',
   },
   {
+    id: 'ethical-checker',
+    title: 'Ethical Checker',
+    domain: 'Evidence retrieval · on-device NLP',
+    stack: ['React', 'TypeScript', 'Vite', 'Transformers.js', 'ONNX'],
+    year: '2026',
+    state: 'live',
+    featured: true,
+    summary:
+      'A keyless public-record reader: search a company or creator and read what Wikidata, Wikipedia and the entity’s own site actually publish — every claim linked, and a score that measures evidence coverage, not virtue.',
+    story: [
+      'No API keys, no accounts. Wikidata supplies identity and official links, Wikipedia supplies the dispute record, and a local Scrapling service reads the official site, falling back to a text proxy when it cannot. When a page cannot be read the record says so; when a dimension has no evidence it is reported as unscored instead of estimated.',
+      'Two models run in the browser through ONNX. all-MiniLM-L6-v2 embeds every scraped passage so a question can be matched against what a lookup actually read, with MMR keeping the five results diverse; MobileBERT-MNLI reads the same passages against five transparency definitions. A model lab runs hand-labeled probes and reports its own accuracy, confusion matrix, latency and regex failures live — on the bundled probes, 5/5 retrieval, 9/10 entailment and 10/13 regex, with the three misses listed. A rules-vs-model panel shows where the literal layer and the model disagree.',
+    ],
+    note: 'The score is deterministic evidence coverage, and every number carries its provenance: rule, model or source. Retrieval quotes the record — no model writes an answer.',
+    demoUrl: 'https://ethical-searcher.vercel.app/',
+    codeUrl: 'https://github.com/JefryV2/ethical-searcher',
+  },
+  {
     id: 'motorsport-aero-simulator',
     title: 'Motorsport Aero Simulator',
     domain: 'Aerodynamics · simulation',
@@ -125,18 +143,6 @@ export const projects: Project[] = [
     codeUrl: 'https://github.com/JefryV2/debate-guardians',
   },
   {
-    id: 'ethical-checker',
-    title: 'Ethical Checker',
-    domain: 'NLP · social media',
-    stack: ['React', 'Node.js', 'Supabase', 'OpenAI'],
-    year: '2025',
-    state: 'live',
-    summary:
-      'Scores influencer and brand partnerships for transparency using language patterns and disclosure practices.',
-    demoUrl: 'https://ethical-searcher.vercel.app/',
-    codeUrl: 'https://github.com/JefryV2/ethical-searcher',
-  },
-  {
     id: 'ai-business-analyzer',
     title: 'AI Business Analyzer',
     domain: 'Business intelligence',
@@ -201,7 +207,7 @@ export const tooling = [
   },
   {
     group: 'AI & modelling',
-    items: ['Python', 'PyTorch', 'Scikit-learn', 'TensorFlow', 'Pandas', 'OpenAI'],
+    items: ['Python', 'PyTorch', 'Scikit-learn', 'TensorFlow', 'Pandas', 'OpenAI', 'Transformers.js (ONNX)'],
   },
   {
     group: 'Analysis & delivery',
