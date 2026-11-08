@@ -52,6 +52,9 @@ export const projects: Project[] = [
       'Two models run in the browser through ONNX. all-MiniLM-L6-v2 embeds every scraped passage so a question can be matched against what a lookup actually read, with MMR keeping the five results diverse; MobileBERT-MNLI reads the same passages against five transparency definitions. A model lab runs hand-labeled probes and reports its own accuracy, confusion matrix, latency and regex failures live — on the bundled probes, 5/5 retrieval, 9/10 entailment and 10/13 regex, with the three misses listed. A rules-vs-model panel shows where the literal layer and the model disagree.',
     ],
     note: 'The score is deterministic evidence coverage, and every number carries its provenance: rule, model or source. Retrieval quotes the record — no model writes an answer.',
+    image: '/assets/trnspr-evidence.png',
+    caption:
+      'Nike evidence record — 55/100 coverage from 7 indexed sources, with the page that redirected to another host shown as not read rather than counted',
     demoUrl: 'https://ethical-searcher.vercel.app/',
     codeUrl: 'https://github.com/JefryV2/ethical-searcher',
   },
