@@ -97,18 +97,22 @@ export const projects: Project[] = [
   {
     id: 'trinity-life-optimizer',
     title: 'Trinity Life Optimizer',
-    domain: 'Analytics · mobile',
-    stack: ['React', 'TypeScript', 'Supabase', 'Recharts'],
-    year: '2025',
+    domain: 'Personal analytics · native mobile',
+    stack: ['React Native', 'Expo', 'TypeScript', 'Nhost', 'Supabase'],
+    year: '2025–2026',
     state: 'live',
     featured: true,
     summary:
-      'A mobile-first personal analytics app that unifies health, wealth and relationships into one dashboard.',
+      'Health, money and relationships in a native Expo app and a React web companion — with a life score that explains every point and seven-day experiments grounded in daily logs.',
     story: [
-      'Three life pillars on one data model: sleep, steps, mood and stress for health; accounts and spending for wealth; people and cadence for relationships. Rich visualisations sit on a Supabase-backed schema, and an Insights Lab adds time-series analysis, correlations and small experiments.',
+      'Sleep, nutrition, hydration and activity; accounts, budgets and net worth; people, interactions and gratitude. The native app uses Expo Router, TanStack Query and Nhost authentication with a GraphQL data layer. The web companion retains Supabase, while the native offline demo keeps sample records on the device.',
+      'The score is deterministic, with fixed ceilings and a breakdown linking each point to an input. Seven-day experiments compare logged days that met a chosen rule with days that did not, and withhold comparisons when there is too little data. Native integrations include Bluetooth heart-rate monitors, hydration notifications and foreground GPS walks; walk steps and calories are estimates, not sensor measurements.',
     ],
+    note: 'Not a medical or financial adviser. Experiments show associations, not causation. The web demo is browsable without an account.',
     image: '/assets/trinity-dashboard.png',
+    caption: 'Native dashboard — health, wealth and bonds scores, with one next action drawn from the logged data',
     demoUrl: 'https://trinity-life-optimizer.vercel.app/',
+    codeUrl: 'https://github.com/JefryV2/trinity-life-optimizer',
   },
   {
     id: 'ruvopp',

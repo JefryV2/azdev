@@ -100,9 +100,9 @@ const projects = [
   },
   {
     title: 'Trinity Life Optimizer',
-    note: 'Mobile-first dashboard unifying health, wealth and relationships into one data model, with stress modelling and time-series insights.',
-    stack: 'React · TypeScript · Supabase · Recharts',
-    link: 'https://trinity-life-optimizer.vercel.app/',
+    note: 'Native Expo app and React web companion for health, wealth and relationships, with explainable deterministic scoring, daily snapshots and seven-day observational experiments.',
+    stack: 'React Native · Expo · TypeScript · Nhost · Supabase',
+    link: 'https://github.com/JefryV2/trinity-life-optimizer',
   },
   {
     title: 'Ruvopp',

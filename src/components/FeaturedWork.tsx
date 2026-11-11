@@ -131,7 +131,10 @@ const FeaturedWork = () => {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full block"
+                        className={cn(
+                          'w-full block',
+                          project.id === 'trinity-life-optimizer' && 'mx-auto max-w-[280px] rounded-2xl'
+                        )}
                         loading="lazy"
                       />
                       <figcaption className="mt-2.5 font-mono text-[10.5px] leading-4 text-muted-foreground">
